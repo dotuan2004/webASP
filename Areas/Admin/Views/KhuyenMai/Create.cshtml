@@ -1,0 +1,91 @@
+﻿@model LTW.Models.KhuyenMai
+
+@{
+    ViewBag.Title = "Thêm khuyến mãi mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Thêm Khuyến Mãi Mới</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "KhuyenMai")">Khuyến mãi</a></li>
+        <li class="breadcrumb-item active">Thêm mới</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-percent me-1"></i>
+            Thông tin khuyến mãi
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Tên khuyến mãi <span class="text-danger">*</span></label>
+                        @Html.EditorFor(m => m.TenKM, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(m => m.TenKM, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Phần trăm giảm <span class="text-danger">*</span></label>
+                        @Html.EditorFor(m => m.PhanTramGiam, new { htmlAttributes = new { @class = "form-control", type = "number", min = "0", max = "100" } })
+                        @Html.ValidationMessageFor(m => m.PhanTramGiam, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ngày bắt đầu <span class="text-danger">*</span></label>
+                        @Html.EditorFor(m => m.NgayBatDau, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                        @Html.ValidationMessageFor(m => m.NgayBatDau, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Ngày kết thúc <span class="text-danger">*</span></label>
+                        @Html.EditorFor(m => m.NgayKetThuc, new { htmlAttributes = new { @class = "form-control", type = "datetime-local" } })
+                        @Html.ValidationMessageFor(m => m.NgayKetThuc, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Điều kiện áp dụng</label>
+                        @Html.EditorFor(m => m.DieuKienApDung, new { htmlAttributes = new { @class = "form-control", type = "number" } })
+                        @Html.ValidationMessageFor(m => m.DieuKienApDung, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Mô tả</label>
+                        @Html.TextAreaFor(m => m.MoTa, new { @class = "form-control", rows = "3" })
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Chọn sản phẩm áp dụng <span class="text-danger">*</span></label>
+                        @Html.ListBox("selectedProducts", (MultiSelectList)ViewBag.Products, new { @class = "form-control select2", multiple = "multiple" })
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <a href="@Url.Action("Index")" class="btn btn-secondary me-2">
+                        <i class="fas fa-times me-1"></i>Hủy
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i>Lưu
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2({
+                placeholder: "Chọn sản phẩm...",
+                allowClear: true
+            });
+        });
+    </script>
+}

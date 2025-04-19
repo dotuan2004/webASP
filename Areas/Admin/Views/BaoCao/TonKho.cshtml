@@ -1,0 +1,240 @@
+﻿@{
+    ViewBag.Title = "Báo Cáo Tồn Kho";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Báo Cáo Tồn Kho</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Báo cáo tồn kho</li>
+        </ol>
+
+        <!-- Thống kê tổng quan -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng sản phẩm</h4>
+                        <h2 class="mb-0">@ViewBag.TongSanPham</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng số lượng tồn</h4>
+                        <h2 class="mb-0">@ViewBag.TongTonKho.ToString("#,##0")</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng giá trị tồn</h4>
+                        <h2 class="mb-0">@ViewBag.TongGiaTriTon.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        <h4>SP gần hết hàng</h4>
+                        <h2 class="mb-0">@ViewBag.SanPhamGanHet</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biểu đồ -->
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-pie me-1"></i>
+                        Giá trị tồn kho theo loại sản phẩm
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pieChart" width="100%" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        Số lượng tồn theo loại
+                    </div>
+                    <div class="card-body">
+                        <canvas id="barChart" width="100%" height="50"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng chi tiết -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-table me-1"></i>
+                    Chi tiết tồn kho
+                </div>
+                <div>
+                    <button class="btn btn-success" onclick="exportToExcel()">
+                        <i class="fas fa-file-excel me-1"></i> Xuất Excel
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại SP</th>
+                            <th>Tồn kho</th>
+                            <th>Giá vốn</th>
+                            <th>Giá trị tồn</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.TonKho)
+                        {
+                            var trangThai = "";
+                            var trangThaiClass = "";
+
+                            if (item.SoLuongTon == 0)
+                            {
+                                trangThai = "Hết hàng";
+                                trangThaiClass = "bg-danger text-white";
+                            }
+                            else if (item.SoLuongTon <= 10)
+                            {
+                                trangThai = "Sắp hết";
+                                trangThaiClass = "bg-warning text-dark";
+                            }
+                            else
+                            {
+                                trangThai = "Bình thường";
+                                trangThaiClass = "bg-success text-white";
+                            }
+
+                            <tr>
+                                <td>@item.MaSP</td>
+                                <td>@item.TenSP</td>
+                                <td>@item.LoaiSP</td>
+                                <td class="text-end">@item.SoLuongTon.ToString("#,##0")</td>
+                                <td class="text-end">@String.Format("{0:N0}", item.GiaVon) đ</td>
+                                <td class="text-end">@String.Format("{0:N0}", item.GiaTriTon) đ</td>
+                                <td class="text-center">
+                                    <span class="badge @trangThaiClass">@trangThai</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script>
+        // Biểu đồ tròn
+        var ctxPie = document.getElementById("pieChart").getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(ViewBag.PieData)),
+                    backgroundColor: [
+                        '#007bff', '#28a745', '#ffc107', '#dc3545',
+                        '#17a2b8', '#6610f2', '#fd7e14', '#20c997'
+                    ],
+                }],
+            },
+            options: {
+                legend: { position: 'right' },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var value = data.datasets[0].data[tooltipItem.index];
+                            return data.labels[tooltipItem.index] + ': ' +
+                                   value.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            }
+        });
+
+        // Biểu đồ cột
+        var ctxBar = document.getElementById("barChart").getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    label: 'Số lượng tồn',
+                    data: @Html.Raw(Json.Encode(ViewBag.BarData)),
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            callback: function(value) {
+                                return value.toLocaleString('vi-VN');
+                            }
+                        }
+                    }]
+                }
+            }
+        });
+
+        function exportToExcel() {
+            try {
+                // Thêm loading indicator
+                const loadingHtml = `<div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                   </div>`;
+                document.body.insertAdjacentHTML('beforeend', loadingHtml);
+
+                fetch('@Url.Action("ExportTonKho", "BaoCao", new { area = "Admin" })')
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Lỗi khi tải xuống file');
+                        }
+                        return response.blob();
+                    })
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = `BaoCaoTonKho_${new Date().toISOString().slice(0,10)}.xlsx`;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                        document.body.removeChild(a);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Có lỗi xảy ra khi xuất Excel');
+                    })
+                    .finally(() => {
+                        // Remove loading indicator
+                        document.querySelector('.spinner-border')?.remove();
+                    });
+            } catch (error) {
+                console.error('Export error:', error);
+                alert('Có lỗi xảy ra');
+            }
+        }
+    </script>
+}

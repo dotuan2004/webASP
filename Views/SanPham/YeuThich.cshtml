@@ -1,0 +1,250 @@
+﻿@model List<LTW.Models.SanPham>
+@{
+    ViewBag.Title = "Sản phẩm yêu thích";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .wishlist-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .wishlist-header {
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #e3ddbb;
+    }
+
+    .wishlist-title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+        margin: 0;
+    }
+
+    .wishlist-count {
+        color: #666;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .wishlist-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .wishlist-item {
+        position: relative;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+    .wishlist-image-container {
+        position: relative;
+        padding-top: 133%;
+        overflow: hidden;
+    }
+
+    .wishlist-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .wishlist-remove {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+    }
+
+        .wishlist-remove:hover {
+            background: #ff4d4d;
+            color: white;
+        }
+
+    .wishlist-info {
+        padding: 15px;
+    }
+
+    .wishlist-name {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 10px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .wishlist-name:hover {
+            color: #000;
+            text-decoration: none;
+        }
+
+    .wishlist-price {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .empty-wishlist {
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+        .empty-wishlist i {
+            font-size: 48px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .empty-wishlist h3 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .empty-wishlist p {
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+    .continue-shopping {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+        .continue-shopping:hover {
+            background-color: #000;
+            color: white;
+            text-decoration: none;
+        }
+
+    .add-to-cart {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+        .add-to-cart:hover {
+            background-color: #000;
+        }
+</style>
+
+<div class="wishlist-container">
+    <div class="wishlist-header">
+        <h1 class="wishlist-title">
+            Danh sách yêu thích
+            <span class="wishlist-count">(@Model.Count sản phẩm)</span>
+        </h1>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="wishlist-grid">
+            @foreach (var item in Model)
+            {
+                <div class="wishlist-item" id="wishlist-item-@item.MaSP">
+                    <div class="wishlist-image-container">
+                        <a href="@Url.Action("Detail", "SanPham", new { id = item.MaSP })">
+                            <img src="@item.Hinh" alt="@item.TenSP" class="wishlist-image">
+                        </a>
+                        <button class="wishlist-remove" onclick="removeFromWishlist(@item.MaSP)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="wishlist-info">
+                        <a href="@Url.Action("Detail", "SanPham", new { id = item.MaSP })" class="wishlist-name">
+                            @item.TenSP
+                        </a>
+                        <div class="wishlist-price">@item.GiaSP.ToString("N0") đ</div>
+                        <button class="add-to-cart" onclick="addToCart(@item.MaSP)">
+                            Thêm vào giỏ hàng
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="empty-wishlist">
+            <i class="far fa-heart"></i>
+            <h3>Danh sách yêu thích trống</h3>
+            <p>Hãy thêm những sản phẩm bạn yêu thích vào đây</p>
+            <a href="@Url.Action("Index", "Home")" class="continue-shopping">
+                Tiếp tục mua sắm
+            </a>
+        </div>
+    }
+</div>
+
+<script>
+    function removeFromWishlist(maSP) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ToggleYeuThich", "SanPham")',
+            data: { maSP: maSP },
+            success: function(result) {
+                if (result.success) {
+                    // Xóa item khỏi giao diện với hiệu ứng fade
+                    $(`#wishlist-item-${maSP}`).fadeOut(300, function() {
+                        $(this).remove();
+                        // Kiểm tra nếu không còn sản phẩm nào
+                        if ($('.wishlist-item').length === 0) {
+                            location.reload(); // Tải lại trang để hiển thị trạng thái trống
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    function addToCart(maSP) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ThemGioHang", "GioHang")',
+            data: { id: maSP },
+            success: function(result) {
+                if (result.success) {
+                    alert('Đã thêm sản phẩm vào giỏ hàng');
+                    getGioHangPartial(); // Cập nhật số lượng giỏ hàng
+                }
+            }
+        });
+    }
+</script>

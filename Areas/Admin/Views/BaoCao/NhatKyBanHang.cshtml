@@ -1,0 +1,210 @@
+﻿@model LTW.Areas.Admin.Model.NhatKyBanHangViewModel
+@{
+    ViewBag.Title = "Nhật Ký Bán Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Nhật Ký Bán Hàng</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index","Admin")">Trang chủ</a></li>
+            <li class="breadcrumb-item active">Nhật ký bán hàng</li>
+        </ol>
+
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label">Từ ngày</label>
+                        <input type="date" name="fromDate" class="form-control"
+                               value="@Model.TuNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Đến ngày</label>
+                        <input type="date" name="toDate" class="form-control"
+                               value="@Model.DenNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Trạng thái</label>
+                        <select name="trangThai" class="form-select">
+                            <option value="">Tất cả</option>
+                            <option value="dagiao" @(Model.TrangThai == "dagiao" ? "selected" : "")>Hoàn thành</option>
+                            <option value="chuagiao" @(Model.TrangThai == "chuagiao" ? "selected" : "")>Chưa giao</option>
+                            <option value="dahuy" @(Model.TrangThai == "dahuy" ? "selected" : "")>Đã hủy</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fas fa-filter me-1"></i> Lọc
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Thống kê -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Số đơn hàng</h4>
+                        <h2 class="mb-0">@Model.ThongKe.SoDonHang</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Doanh thu</h4>
+                        <h2 class="mb-0">@Model.ThongKe.DoanhThu.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-info text-white mb-4">
+                    <div class="card-body">
+                        <h4>Số sản phẩm</h4>
+                        <h2 class="mb-0">@Model.ThongKe.SoSanPham</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h4>Trung bình/đơn</h4>
+                        <h2 class="mb-0">@Model.ThongKe.TrungBinhDon.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Biểu đồ -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-line me-1"></i>
+                        Doanh số bán hàng theo ngày
+                    </div>
+                    <div class="card-body">
+                        <canvas id="salesChart" width="100%" height="40"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chi tiết -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-table me-1"></i>
+                    Chi tiết nhật ký bán hàng
+                </div>
+                <div>
+                    <button class="btn btn-success" onclick="exportToExcel()">
+                        <i class="fas fa-file-excel me-1"></i> Xuất Excel
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ngày</th>
+                            <th>Mã ĐH</th>
+                            <th>Sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                            <th>Thanh toán</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DanhSachNhatKy)
+                        {
+                            <tr>
+                                <td>@item.NgayGiaoDich.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@item.MaDH</td>
+                                <td>@item.TenSP</td>
+                                <td class="text-end">@item.SoLuong.ToString("#,##0")</td>
+                                <td class="text-end">@item.DonGia.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.ThanhTien.ToString("#,##0") đ</td>
+                                <td>@item.ThanhToan</td>
+                                <td class="text-center">
+                                    <span class="badge @item.TrangThaiClass text-white">@item.TrangThaiText</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script>
+        // Chart
+        var ctx = document.getElementById("salesChart").getContext('2d');
+        var salesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    label: "Doanh số",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(2,117,216,0.2)",
+                    borderColor: "rgba(2,117,216,1)",
+                    pointRadius: 5,
+                    pointBackgroundColor: "rgba(2,117,216,1)",
+                    pointBorderColor: "rgba(255,255,255,0.8)",
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                    pointHitRadius: 50,
+                    pointBorderWidth: 2,
+                    data: @Html.Raw(Json.Encode(ViewBag.ChartData))
+                }],
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: { display: false },
+                        ticks: { maxTicksLimit: 7 }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            max: @ViewBag.MaxDoanhThu,
+                            maxTicksLimit: 5,
+                            callback: function(value) {
+                                return value.toLocaleString('vi-VN') + ' đ';
+                            }
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, .125)",
+                        }
+                    }],
+                },
+                legend: { display: false },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.yLabel.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            }
+        });
+
+        // Export to Excel function
+        function exportToExcel() {
+            window.location.href = '@Url.Action("ExportNhatKyBanHang", "BaoCao")' +
+                                 '?fromDate=@Model.TuNgay.ToString("yyyy-MM-dd")' +
+                                 '&toDate=@Model.DenNgay.ToString("yyyy-MM-dd")' +
+                                 '&trangThai=@Model.TrangThai';
+        }
+    </script>
+}

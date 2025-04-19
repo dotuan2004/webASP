@@ -1,0 +1,130 @@
+﻿@model LTW.Models.SanPham
+@{
+    ViewBag.Title = "Xóa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Xóa Sản Phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListSanPham", "SanPhams")">Sản phẩm</a></li>
+        <li class="breadcrumb-item active">Xóa sản phẩm</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-exclamation-triangle me-1 text-danger"></i>
+            Xác nhận xóa sản phẩm
+        </div>
+        <div class="card-body">
+            <div class="alert alert-danger" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>
+                Bạn có chắc chắn muốn xóa sản phẩm này? Hành động này không thể hoàn tác.
+            </div>
+
+            <div class="row">
+                <!-- Hình ảnh sản phẩm -->
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <img src="@Url.Content("~/" + Model.Hinh)"
+                             alt="@Model.TenSP"
+                             class="product-image mb-3" />
+                    </div>
+                </div>
+
+                <!-- Thông tin sản phẩm -->
+                <div class="col-md-8">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 200px;" class="bg-light">
+                                <i class="fas fa-box me-2"></i>Tên sản phẩm
+                            </th>
+                            <td>@Model.TenSP</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">
+                                <i class="fas fa-dollar-sign me-2"></i>Giá sản phẩm
+                            </th>
+                            <td>@Model.GiaSP.ToString("#,##0", culture) ₫</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">
+                                <i class="fas fa-warehouse me-2"></i>Số lượng tồn
+                            </th>
+                            <td>@Model.SoLuongTon</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">
+                                <i class="fas fa-building me-2"></i>Nhà cung cấp
+                            </th>
+                            <td>@Model.NCC.TenNCC</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">
+                                <i class="fas fa-align-left me-2"></i>Mô tả
+                            </th>
+                            <td>@Model.MoTa</td>
+                        </tr>
+                    </table>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="text-end mt-4">
+                            <a href="@Url.Action("ListSanPham")" class="btn btn-secondary me-2">
+                                <i class="fas fa-times me-1"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-1"></i>Xác nhận xóa
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .product-image {
+        max-width: 250px;
+        max-height: 250px;
+        object-fit: contain;
+        border-radius: 8px;
+        opacity: 0.7;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+        .table th {
+            background-color: #f8f9fa;
+        }
+
+        .table td, .table th {
+            padding: 0.75rem;
+            vertical-align: middle;
+        }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .btn-danger:hover {
+        transform: translateY(-1px);
+        transition: all 0.2s;
+    }
+
+    .alert {
+        border-radius: 4px;
+        padding: 1rem;
+    }
+</style>

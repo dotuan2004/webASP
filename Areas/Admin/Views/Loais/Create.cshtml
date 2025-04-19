@@ -1,0 +1,142 @@
+﻿@model LTW.Models.Loai
+@{
+    ViewBag.Title = "Thêm loại sản phẩm mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Thêm Loại Sản Phẩm Mới</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListLoai", "Loais")">Danh mục</a></li>
+        <li class="breadcrumb-item active">Thêm mới</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-plus-circle me-1"></i>
+            Thông tin loại sản phẩm mới
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Create", "Loais", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-tag me-1"></i>
+                                Tên loại <span class="text-danger">*</span>
+                            </label>
+                            @Html.EditorFor(model => model.TenLoai, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên loại sản phẩm" } })
+                            @Html.ValidationMessageFor(model => model.TenLoai, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <i class="fas fa-image me-1"></i>
+                                Hình ảnh <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <input type="file" name="Hinh" id="imageInput" class="form-control" accept="image/*" required />
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Hinh, "", new { @class = "text-danger small" })
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <div class="image-preview mb-3">
+                                <img id="preview" src="#" alt="Preview" class="img-preview d-none" />
+                                <div class="placeholder-text">
+                                    <i class="fas fa-cloud-upload-alt fa-3x mb-2"></i>
+                                    <p>Xem trước hình ảnh</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <a href="@Url.Action("ListLoai")" class="btn btn-secondary me-2">
+                        <i class="fas fa-arrow-left me-1"></i>Hủy
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i>Thêm mới
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .form-control {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+    }
+
+    .image-preview {
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .placeholder-text {
+        color: #aaa;
+        text-align: center;
+    }
+
+    .img-preview {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        transition: transform 0.2s;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview').attr('src', e.target.result).removeClass('d-none');
+                    $('.placeholder-text').hide();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageInput").change(function () {
+            readURL(this);
+        });
+    </script>
+}

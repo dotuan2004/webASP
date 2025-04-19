@@ -1,0 +1,123 @@
+﻿@model LTW.Areas.Admin.Model.TopSanPhamViewModel
+@{
+    ViewBag.Title = "Top Sản Phẩm Bán Chạy";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Top @Model.Top Sản Phẩm Bán Chạy</h1>
+
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label">Từ ngày</label>
+                        <input type="date" name="fromDate" class="form-control"
+                               value="@Model.TuNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Đến ngày</label>
+                        <input type="date" name="toDate" class="form-control"
+                               value="@Model.DenNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Top</label>
+                        <select name="top" class="form-select">
+                            <option value="10" @(Model.Top == 10 ? "selected" : "")>10</option>
+                            <option value="20" @(Model.Top == 20 ? "selected" : "")>20</option>
+                            <option value="50" @(Model.Top == 50 ? "selected" : "")>50</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fas fa-filter me-1"></i> Lọc
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng doanh thu</h4>
+                        <h2 class="mb-0">@Model.TongDoanhThu.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng số lượng bán</h4>
+                        <h2 class="mb-0">@Model.TongSoLuong.ToString("#,##0")</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-info text-white mb-4">
+                    <div class="card-body">
+                        <h4>Trung bình/SP</h4>
+                        <h2 class="mb-0">
+                            @((Model.TongSoLuong > 0 ? Model.TongDoanhThu / Model.TongSoLuong : 0).ToString("#,##0")) đ
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <div class="row">
+            <!-- [Giữ nguyên phần charts] -->
+        </div>
+
+        <!-- Detailed Table -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Chi tiết top @Model.Top sản phẩm bán chạy
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Xếp hạng</th>
+                            <th>Mã SP</th>
+                            <th>Hình ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng bán</th>
+                            <th>Doanh thu</th>
+                            <th>Giá TB/SP</th>
+                            <th>Tỷ trọng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DanhSachSanPham)
+                        {
+                            <tr>
+                                <td class="text-center">@(Model.DanhSachSanPham.IndexOf(item) + 1)</td>
+                                <td>@item.MaSP</td>
+                                <td class="text-center">
+                                    <img src="@Url.Content(item.Hinh)"
+                                         alt="@item.TenSP" style="max-height: 50px;" />
+                                </td>
+                                <td>@item.TenSP</td>
+                                <td class="text-end">@item.SoLuongBan.ToString("#,##0")</td>
+                                <td class="text-end">@item.DoanhThu.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.GiaTrungBinh.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.TyTrong.ToString("0.00")%</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <!-- [Giữ nguyên phần scripts] -->
+}

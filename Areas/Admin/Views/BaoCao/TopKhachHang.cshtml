@@ -1,0 +1,180 @@
+﻿@model LTW.Areas.Admin.Model.TopKhachHangViewModel
+@{
+    ViewBag.Title = "Top Khách Hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Top @Model.Top Khách Hàng</h1>
+
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label">Từ ngày</label>
+                        <input type="date" name="fromDate" class="form-control"
+                               value="@Model.TuNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Đến ngày</label>
+                        <input type="date" name="toDate" class="form-control"
+                               value="@Model.DenNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-2">
+                        <label class="form-label">Top</label>
+                        <select name="top" class="form-select">
+                            <option value="10" @(Model.Top == 10 ? "selected" : "")>10</option>
+                            <option value="20" @(Model.Top == 20 ? "selected" : "")>20</option>
+                            <option value="50" @(Model.Top == 50 ? "selected" : "")>50</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fas fa-filter me-1"></i> Lọc
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng doanh thu</h4>
+                        <h2 class="mb-0">@Model.TongDoanhThu.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng số đơn hàng</h4>
+                        <h2 class="mb-0">@Model.TongSoDonHang.ToString("#,##0")</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-info text-white mb-4">
+                    <div class="card-body">
+                        <h4>Trung bình/Đơn hàng</h4>
+                        <h2 class="mb-0">
+                            @((Model.TongSoDonHang > 0 ? Model.TongDoanhThu / Model.TongSoDonHang : 0).ToString("#,##0")) đ
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts -->
+        <!-- [Giữ nguyên phần charts] -->
+        <!-- Bảng chi tiết -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Chi tiết top khách hàng
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Xếp hạng</th>
+                            <th>Mã KH</th>
+                            <th>Tên khách hàng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Số đơn hàng</th>
+                            <th>Tổng giá trị</th>
+                            <th>TB/Đơn</th>
+                            <th>% Doanh thu</th>
+                            <th>Mua gần nhất</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DanhSachKhachHang)
+                        {
+                            <tr>
+                                <td class="text-center">@(Model.DanhSachKhachHang.IndexOf(item) + 1)</td>
+                                <td>@item.MaKH</td>
+                                <td>@item.TenKH</td>
+                                <td>@item.Email</td>
+                                <td>@item.SoDienThoai</td>
+                                <td class="text-end">@item.SoDonHang.ToString("#,##0")</td>
+                                <td class="text-end">@item.TongGiaTri.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.TrungBinhDonHang.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.TyLeDoanhThu.ToString("0.00")%</td>
+                                <td>@item.MuaGanNhat.ToString("dd/MM/yyyy")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script>
+        // Pie Chart
+        var ctxPie = document.getElementById("pieChart").getContext('2d');
+        var pieChart = new Chart(ctxPie, {
+            type: 'pie',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(ViewBag.PieData)),
+                    backgroundColor: [
+                        '#007bff', '#28a745', '#ffc107', '#dc3545',
+                        '#17a2b8', '#6610f2', '#fd7e14', '#20c997',
+                        '#6c757d', '#343a40'
+                    ],
+                }],
+            },
+            options: {
+                legend: { position: 'right' },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            var dataset = data.datasets[tooltipItem.datasetIndex];
+                            var total = dataset.data.reduce(function(previousValue, currentValue) {
+                                return previousValue + currentValue;
+                            });
+                            var currentValue = dataset.data[tooltipItem.index];
+                            var percentage = Math.floor(((currentValue/total) * 100)+0.5);
+                            return data.labels[tooltipItem.index] + ': ' +
+                                   currentValue.toLocaleString('vi-VN') + ' đ (' + percentage + "%)";
+                        }
+                    }
+                }
+            }
+        });
+
+        // Bar Chart
+        var ctxBar = document.getElementById("barChart").getContext('2d');
+        var barChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    label: 'Số đơn hàng',
+                    data: @Html.Raw(Json.Encode(ViewBag.BarData)),
+                    backgroundColor: 'rgba(0, 123, 255, 0.5)',
+                    borderColor: 'rgba(0, 123, 255, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}

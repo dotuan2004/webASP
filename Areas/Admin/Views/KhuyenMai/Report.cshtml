@@ -1,0 +1,206 @@
+﻿@model LTW.Areas.Admin.Model.KhuyenMaiReport
+@{
+    ViewBag.Title = "Báo cáo khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Báo Cáo Khuyến Mãi</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("Index")">Khuyến mãi</a></li>
+        <li class="breadcrumb-item active">Báo cáo</li>
+    </ol>
+
+    <!-- Filter Section -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-filter me-1"></i>
+            Bộ lọc báo cáo
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Report", "KhuyenMai", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Từ ngày</label>
+                        @Html.TextBox("FromDate", ViewBag.FromDate as string, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Đến ngày</label>
+                        @Html.TextBox("ToDate", ViewBag.ToDate as string, new { @class = "form-control", type = "date" })
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">Trạng thái</label>
+                        @Html.DropDownList("Status",
+                            new SelectList(new[]
+                            {
+                                new { Value = "", Text = "Tất cả" },
+                                new { Value = "active", Text = "Đang diễn ra" },
+                                new { Value = "upcoming", Text = "Sắp diễn ra" },
+                                new { Value = "ended", Text = "Đã kết thúc" }
+                            }, "Value", "Text"), new { @class = "form-select" })
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label">&nbsp;</label>
+                        <button type="submit" class="btn btn-primary d-block w-100">
+                            <i class="fas fa-search me-1"></i>Tìm kiếm
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row">
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-primary text-white mb-4">
+                <div class="card-body">
+                    <h4 class="mb-0">@Model.TotalPromotions</h4>
+                    <div>Tổng số khuyến mãi</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">
+                    <h4 class="mb-0">@Model.ActivePromotions</h4>
+                    <div>Đang diễn ra</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">
+                    <h4 class="mb-0">@Model.TotalProducts</h4>
+                    <div>Sản phẩm được KM</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">
+                    <h4 class="mb-0">@Model.TotalOrders.ToString("#,##0", culture)</h4>
+                    <div>Đơn hàng áp dụng KM</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar me-1"></i>
+                    Doanh số theo khuyến mãi
+                </div>
+                <div class="card-body">
+                    <canvas id="promotionSalesChart" width="100%" height="40"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-1"></i>
+                    Phân bố sản phẩm khuyến mãi
+                </div>
+                <div class="card-body">
+                    <canvas id="productDistributionChart" width="100%" height="40"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Data -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table me-1"></i>
+            Chi tiết khuyến mãi
+        </div>
+        <div class="card-body">
+            <table id="datatablesDetailed" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã KM</th>
+                        <th>Tên khuyến mãi</th>
+                        <th>Số SP</th>
+                        <th>Số đơn hàng</th>
+                        <th>Doanh số</th>
+                        <th>Giảm giá</th>
+                        <th>Thực thu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.PromotionDetails)
+                    {
+                        <tr>
+                            <td>@item.MaKM</td>
+                            <td>@item.TenKM</td>
+                            <td class="text-end">@item.SoSanPham</td>
+                            <td class="text-end">@item.SoDonHang</td>
+                            <td class="text-end">@item.DoanhSo.ToString("#,##0", culture)₫</td>
+                            <td class="text-end">@item.TienGiam.ToString("#,##0", culture)₫</td>
+                            <td class="text-end">@item.ThucThu.ToString("#,##0", culture)₫</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Biểu đồ doanh số
+        var ctxBar = document.getElementById("promotionSalesChart");
+        new Chart(ctxBar, {
+            type: "bar",
+            data: {
+                labels: @Html.Raw(Json.Encode(Model.ChartLabels)),
+                datasets: [{
+                    label: "Doanh số",
+                    backgroundColor: "rgba(0, 97, 242, 0.7)",
+                    borderColor: "rgba(0, 97, 242, 1)",
+                    data: @Html.Raw(Json.Encode(Model.ChartData))
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Biểu đồ phân bố
+        var ctxPie = document.getElementById("productDistributionChart");
+        new Chart(ctxPie, {
+            type: "pie",
+            data: {
+                labels: @Html.Raw(Json.Encode(Model.PieLabels)),
+                datasets: [{
+                    data: @Html.Raw(Json.Encode(Model.PieData)),
+                    backgroundColor: [
+                        "rgba(0, 97, 242, 0.7)",
+                        "rgba(40, 167, 69, 0.7)",
+                        "rgba(255, 193, 7, 0.7)",
+                        "rgba(220, 53, 69, 0.7)"
+                    ]
+                }]
+            }
+        });
+
+        // DataTable
+        window.addEventListener('DOMContentLoaded', event => {
+            const datatablesDetailed = document.getElementById('datatablesDetailed');
+            if (datatablesDetailed) {
+                new simpleDatatables.DataTable(datatablesDetailed);
+            }
+        });
+    </script>
+}

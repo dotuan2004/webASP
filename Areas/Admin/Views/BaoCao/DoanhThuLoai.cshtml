@@ -1,0 +1,103 @@
+﻿@model LTW.Areas.Admin.Model.DoanhThuLoaiViewModel
+@{
+    ViewBag.Title = "Doanh Thu Theo Loại Sản Phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label">Từ ngày</label>
+                        <input type="date" name="fromDate" class="form-control"
+                               value="@Model.TuNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Đến ngày</label>
+                        <input type="date" name="toDate" class="form-control"
+                               value="@Model.DenNgay.ToString("yyyy-MM-dd")" />
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fas fa-filter me-1"></i> Lọc
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row">
+            <div class="col-xl-4">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng doanh thu</h4>
+                        <h2 class="mb-0">@Model.TongDoanhThu.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        <h4>Tổng chi phí</h4>
+                        <h2 class="mb-0">@Model.TongChiPhi.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Lợi nhuận</h4>
+                        <h2 class="mb-0">@Model.LoiNhuan.ToString("#,##0") đ</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <!-- [Giữ nguyên phần charts như cũ] -->
+        <!-- Detailed Table -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Chi tiết doanh thu theo loại
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Loại sản phẩm</th>
+                            <th>Số lượng bán</th>
+                            <th>Doanh thu</th>
+                            <th>Chi phí</th>
+                            <th>Lợi nhuận</th>
+                            <th>Tỷ trọng</th>
+                            <th>TB/SP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DoanhThuLoai)
+                        {
+                            <tr>
+                                <td>@item.LoaiSP</td>
+                                <td>@item.SoLuongBan.ToString("#,##0")</td>
+                                <td>@item.DoanhThu.ToString("#,##0") đ</td>
+                                <td>@item.TongChiPhi.ToString("#,##0") đ</td>
+                                <td>@item.LoiNhuan.ToString("#,##0") đ</td>
+                                <td>@item.TyTrong.ToString("0.00")%</td>
+                                <td>@item.TrungBinhSP.ToString("#,##0") đ</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <!-- [Giữ nguyên phần scripts như cũ] -->
+}

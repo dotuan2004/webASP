@@ -1,0 +1,361 @@
+﻿@model PagedList.IPagedList<LTW.Models.SanPham>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "ListSanPham";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .promo-banner {
+        width: 100%;
+        padding: 0 0;
+        margin-top: 20px;
+    }
+
+    .promo-banner img {
+        width: 100%;
+        height: 486px;
+        object-fit: fill;
+    }
+
+    .product-title {
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .product-title span {
+        color: #666;
+        font-size: 16px;
+        margin-left: 10px;
+    }
+
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+    }
+
+    .product-item {
+        background-color: transparent;
+        position: relative;
+    }
+
+    .product-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .product-image {
+        position: relative;
+        padding-top: 133%;
+        overflow: hidden;
+    }
+
+    .product-image img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    .product-item:hover .product-image img {
+        transform: scale(1.05);
+    }
+
+    .product-info {
+        padding: 15px;
+    }
+
+    .product-price {
+        margin-bottom: 10px;
+    }
+
+    .current-price {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .product-name {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #333;
+        transition: color 0.3s ease;
+    }
+
+    .product-item:hover .product-name {
+        color: #000;
+        font-weight: bold;
+    }
+
+    .product-link {
+        text-decoration: none;
+        color: inherit;
+        display: block;
+    }
+
+    .product-link:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .block-header {
+        font-weight: 400;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    /* Add new pagination styles */
+    .MenuTrang {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 8px;
+    }
+
+    .MenuTrang .pagination {
+        display: flex;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+    }
+
+    .MenuTrang .pagination li {
+        display: inline-block;
+    }
+
+    .MenuTrang .pagination li a,
+    .MenuTrang .pagination li span {
+        padding: 8px 12px;
+        text-decoration: none;
+        color: #333;
+        background-color: transparent;
+        border: none;
+    }
+
+    .MenuTrang .pagination li.active {
+        background-color: #212121;
+    }
+
+    .MenuTrang .pagination li.active a {
+        color: white;
+    }
+
+    .MenuTrang .pagination li a:hover {
+        background-color: #212121;
+        color: white;
+    }
+
+    .wishlist-btn {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 10;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .wishlist-btn:hover {
+        transform: scale(1.1);
+        background: white;
+    }
+
+    .wishlist-btn i {
+        font-size: 18px;
+        color: #666;
+    }
+
+    .wishlist-btn.active i {
+        color: #ff4d4d;
+    }
+
+    .price-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .original-price {
+        text-decoration: line-through;
+        color: #999;
+        font-size: 14px;
+    }
+
+    .current-price {
+        color: #ff3d00;
+        font-weight: bold;
+    }
+
+    .promotion-badge {
+        background: #ff3d00;
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+</style>
+
+<script type="text/javascript">
+    function addToCart(id) {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("ThemGioHang", "GioHang")",
+            data: { id: id },
+            success: function (result) {
+                getGioHangPartial();
+                if (result.success == true) {
+                    alert(result.message);
+                }
+            }
+        });
+    }
+
+    function toggleSort() {
+        const menu = document.getElementById('sortMenu');
+        menu.classList.toggle('show');
+    }
+
+    document.addEventListener('click', function (event) {
+        const sortBtn = document.querySelector('.sort-btn');
+        const sortMenu = document.getElementById('sortMenu');
+
+        if (!sortBtn.contains(event.target)) {
+            sortMenu.classList.remove('show');
+        }
+    });
+
+    function handleWishlistClick(event, maSP, button) {
+        event.preventDefault();  // Ngăn chặn hành vi mặc định
+        event.stopPropagation(); // Ngăn chặn sự kiện bubble lên
+
+        toggleYeuThich(maSP, button);
+        return false; // Ngăn chặn navigation
+    }
+
+    function toggleYeuThich(maSP, button) {
+        $.ajax({
+            type: 'POST',
+            url: '/SanPham/ToggleYeuThich',
+            data: { maSP: maSP },
+            success: function (result) {
+                if (result.success) {
+                    $(button).toggleClass('active');
+                    var icon = $(button).find('i');
+                    if ($(button).hasClass('active')) {
+                        icon.removeClass('far').addClass('fas');
+                    } else {
+                        icon.removeClass('fas').addClass('far');
+                    }
+                } else {
+                    // Nếu chưa đăng nhập hoặc có lỗi
+                    if (result.message) {
+                        alert(result.message);
+                        if (result.message.includes('đăng nhập')) {
+                            window.location.href = '/NguoiDung/DangNhap';
+                        }
+                    }
+                }
+            },
+            error: function () {
+                alert('Có lỗi xảy ra khi thực hiện thao tác!');
+            }
+        });
+
+        return false; // Ngăn chặn sự kiện navigation
+    }
+</script>
+
+<!-- Static Banner -->
+<section class="promo-banner">
+    <img src="~/Content/Images/banner1.png" alt="Banner" />
+</section>
+
+<!-- Product Section -->
+<div class="app__container" style="background-color: transparent; margin-top: 20px;">
+    <div class="grid wide">
+        <div class="row sm-gutter">
+            <div class="col l-12 m-12 c-12">
+                <div class="product-header">
+                    <p class="block-header">NEW ARRIVAL</p>
+                </div>
+
+                <div class="product-grid">
+                    @foreach (var item in Model)
+                    {
+                        <div class="product-item">
+                            <a href="@Url.Action("Detail", "SanPham", new { id = item.MaSP })" class="product-link">
+                                <div class="product-image">
+                                    <img src="@item.Hinh" alt="@item.TenSP" />
+                                    <button class="wishlist-btn @(ViewBag.LikedProducts?.Contains(item.MaSP) ?? false ? "active" : "")"
+                                            onclick="toggleYeuThich(@item.MaSP, this)">
+                                        <i class="@(ViewBag.LikedProducts?.Contains(item.MaSP) ?? false ? "fas" : "far") fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="product-info">
+                                    <div class="product-price">
+                                        @{
+                                            var promotionPrice = ViewBag.PromotionPrices[item.MaSP];
+                                            var promotion = ViewBag.Promotions[item.MaSP];
+                                        }
+
+                                        @{
+                                            var culture = new System.Globalization.CultureInfo("vi-VN");
+                                        }
+
+                                        @if (promotion != null)
+                                        {
+                                            <del class="original-price">@item.GiaSP.ToString("#,##0", culture)₫</del>
+                                            <span class="sale-price">@promotionPrice.ToString("#,##0", culture)₫</span>
+                                            <div class="discount-badge">-@promotion.PhanTramGiam%</div>
+                                        }
+                                        else
+                                        {
+                                            <span class="regular-price">@item.GiaSP.ToString("#,##0", culture)₫</span>
+                                        }
+                                    </div>
+                                    <h3 class="product-name">@item.TenSP</h3>
+                                    <div class="product-colors">
+                                        <span class="color-dot" style="background-color: #B7E4E0"></span>
+                                        <span class="color-dot" style="background-color: #FFFFFF"></span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+
+                @*<div class="MenuTrang">
+            @Html.PagedListPager(Model, page => Url.Action("ListSanPham", new { page }))
+        </div>*@
+                <div class="MenuTrang">
+                    @Html.PagedListPager(
+                        Model,
+                        page => Url.Action("ListSanPham", new { page }),
+                        new PagedListRenderOptions
+                             {
+                            DisplayLinkToFirstPage = PagedListDisplayMode.Never,
+                            DisplayLinkToLastPage = PagedListDisplayMode.Never,
+                            DisplayLinkToPreviousPage = PagedListDisplayMode.Never,
+                            DisplayLinkToNextPage = PagedListDisplayMode.Always,
+                            LinkToNextPageFormat = "»",
+                            MaximumPageNumbersToDisplay = 3
+                        }
+                    )
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,178 @@
+﻿@model LTW.Models.SanPham
+@{
+    ViewBag.Title = "Chỉnh sửa sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Chỉnh Sửa Sản Phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListSanPham", "SanPhams")">Sản phẩm</a></li>
+        <li class="breadcrumb-item active">Chỉnh sửa sản phẩm #@Model.MaSP</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-edit me-1"></i>
+            Thông tin sản phẩm
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.MaSP)
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-box me-1"></i>Tên sản phẩm <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên sản phẩm" } })
+                                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-tags me-1"></i>Loại sản phẩm <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.MaLoai, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-tag me-1"></i>Giá sản phẩm <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.GiaSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập giá bán" } })
+                                @Html.ValidationMessageFor(model => model.GiaSP, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-warehouse me-1"></i>Số lượng tồn <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số lượng" } })
+                                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-align-left me-1"></i>Mô tả
+                                </label>
+                                @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = "3", placeholder = "Nhập mô tả sản phẩm" })
+                                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <label class="form-label">
+                                <i class="fas fa-image me-1"></i>Hình ảnh sản phẩm
+                            </label>
+                            <div class="image-upload-container">
+                                @Html.HiddenFor(model => model.Hinh)
+                                <img src="@Model.Hinh" id="pictureUpload" class="img-preview mb-2" />
+                                <div class="mt-2">
+                                    <input type="file" id="fileUpload" accept="image/*" class="d-none" />
+                                    <button type="button" id="btnUpload" class="btn btn-outline-primary">
+                                        <i class="fas fa-upload me-1"></i>Thay đổi ảnh
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <a href="@Url.Action("ListSanPham")" class="btn btn-secondary me-2">
+                        <i class="fas fa-arrow-left me-1"></i>Hủy
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-check me-1"></i>Cập nhật
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .form-control {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+    }
+
+        .form-control:focus {
+            border-color: #198754;
+            box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+        }
+
+    .image-upload-container {
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        padding: 15px;
+    }
+
+    .img-preview {
+        max-width: 200px;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            transition: transform 0.2s;
+        }
+</style>
+
+@section upload {
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+
+            $('#fileUpload').change(function () {
+                if (window.FormData !== undefined) {
+                    var fileUpload = $('#fileUpload').get(0);
+                    var files = fileUpload.files;
+                    var formData = new FormData();
+                    formData.append('file', files[0]);
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/SanPham/ProcessUpload',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#Hinh').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert('Lỗi tải ảnh: ' + err.statusText);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

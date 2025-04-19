@@ -1,0 +1,111 @@
+﻿@{
+    ViewBag.Title = "Xác nhận đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="order-success">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 class="success-title">Đặt hàng thành công!</h2>
+        <div class="success-message">
+            <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đã được xác nhận.</p>
+            <p>Chúng tôi sẽ giao hàng cho bạn sớm nhất có thể!</p>
+        </div>
+        <div class="success-actions">
+            <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+                <i class="fas fa-home me-2"></i>Về trang chủ
+            </a>
+            <a href="@Url.Action("ListSanPham", "SanPham")" class="btn btn-outline-primary">
+                <i class="fas fa-shopping-bag me-2"></i>Tiếp tục mua sắm
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .order-success {
+        text-align: center;
+        padding: 50px 20px;
+        max-width: 600px;
+        margin: 40px auto;
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    }
+
+    .success-icon {
+        font-size: 80px;
+        color: #28a745;
+        margin-bottom: 20px;
+        animation: scaleIn 0.5s ease-in-out;
+    }
+
+    .success-title {
+        color: #333;
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .success-message {
+        color: #666;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+
+    .success-message p {
+        margin-bottom: 10px;
+    }
+
+    .success-actions {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 6px 25px;
+        font-size: 16px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background-color: #333;
+        border-color: #333;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #555;
+        border-color: #555;
+    }
+
+    .btn-outline-primary {
+        color: #333;
+        border-color: #333;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #333;
+        color: #fff;
+    }
+
+    @*@keyframes scaleIn {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }*@
+
+    .me-2 {
+        margin-right: 8px;
+    }
+</style>

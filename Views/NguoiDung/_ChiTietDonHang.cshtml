@@ -1,0 +1,283 @@
+﻿@model LTW.Models.DonHang
+@{
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+    var chiTiet = ViewBag.ChiTietDonHang as List<LTW.Models.ChiTietDonHang>;
+}
+
+<div class="order-detail">
+    <!-- Thông tin đơn hàng -->
+    <div class="order-info">
+        <div class="row">
+            <div class="col l-6 m-6 c-12">
+                <div class="info-section">
+                    <h4>Thông tin đơn hàng</h4>
+                    <div class="info-item">
+                        <span class="label">Mã đơn hàng:</span>
+                        <span class="value">#@Model.MaDH</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Ngày đặt:</span>
+                        <span class="value">@Model.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Trạng thái:</span>
+                        <span class="value">
+                            @if (@Model.TrangThai == "chuagiao")
+                            {
+                                <span class="status-badge warning">Chưa giao</span>
+                            }
+                            else if (@Model.TrangThai == "dagiao")
+                            {
+                                <span class="status-badge success">Đã giao</span>
+                            }
+                            else if (@Model.TrangThai == "dahuy")
+                            {
+                                <span class="status-badge danger">Đã hủy</span>
+                            }
+                            else if (@Model.TrangThai == "trahang")
+                            {
+                                <span class="status-badge info">Đã trả hàng</span>
+                            }
+                        </span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Phương thức thanh toán:</span>
+                        <span class="value">@Model.ThanhToan.TenTT</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col l-6 m-6 c-12">
+                <div class="info-section">
+                    <h4>Thông tin giao hàng</h4>
+                    <div class="info-item">
+                        <span class="label">Ngày giao dự kiến:</span>
+                        <span class="value">@Model.NgayGiaoHangDuKien.ToString("dd/MM/yyyy")</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Người nhận:</span>
+                        <span class="value">@Model.KhachHang.TenKhachHang</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Số điện thoại:</span>
+                        <span class="value">@Model.KhachHang.SDT</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Địa chỉ:</span>
+                        <span class="value">@Model.KhachHang.DiaChi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chi tiết sản phẩm -->
+    <div class="order-items">
+        <h4>Chi tiết sản phẩm</h4>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-end">Đơn giá</th>
+                        <th class="text-end">Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in chiTiet)
+                    {
+                        <tr>
+                            <td>
+                                <div class="product-info">
+                                    <img src="@item.SanPham.Hinh" alt="@item.SanPham.TenSP">
+                                    <div class="product-details">
+                                        <div class="product-name">@item.SanPham.TenSP</div>
+                                        <div class="product-code">Mã SP: @item.MaSP</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="text-center">@item.SoLuongMua</td>
+                            <td class="text-end">@String.Format(culture, "{0:#,##0}", item.SanPham.GiaSP) ₫</td>
+                            <td class="text-end">@String.Format(culture, "{0:#,##0}", item.TongTien) ₫</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-end"><strong>Tổng giá trị đơn hàng:</strong></td>
+                        <td class="text-end total-amount">@String.Format(culture, "{0:#,##0}", Model.TongTienDonHang) ₫</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="order-actions">
+        @if (Model.TrangThai == "chuagiao")
+        {
+            <button class="btn-cancel" onclick="huyDonHang(@Model.MaDH, @Model.MaTT)">
+                <i class="fas fa-times"></i> Hủy đơn hàng
+            </button>
+        }
+        @if (Model.TrangThai == "dagiao")
+        {
+            <button class="btn-return" onclick="traHang(@Model.MaDH, @Model.MaTT)">
+                <i class="fas fa-undo"></i> Trả hàng
+            </button>
+        }
+    </div>
+</div>
+
+<style>
+    .order-detail {
+        padding: 20px;
+    }
+
+    .order-info {
+        margin-bottom: 30px;
+    }
+
+    .info-section {
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .info-section h4 {
+        margin-bottom: 15px;
+        color: #333;
+        font-size: 18px;
+    }
+
+    .info-item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .info-item .label {
+        font-weight: 500;
+        min-width: 150px;
+        color: #666;
+    }
+
+    .info-item .value {
+        color: #333;
+    }
+
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .status-badge.warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .status-badge.info {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table th {
+        background: #f8f9fa;
+        padding: 12px;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table td {
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .product-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .product-info img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .product-details {
+        flex-grow: 1;
+    }
+
+    .product-name {
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .product-code {
+        font-size: 13px;
+        color: #666;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .text-end {
+        text-align: right;
+    }
+
+    .total-amount {
+        font-weight: bold;
+        color: #dc3545;
+    }
+
+    .order-actions {
+        margin-top: 20px;
+        text-align: right;
+    }
+
+    .btn-cancel {
+        padding: 8px 16px;
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-cancel:hover {
+        background-color: #c82333;
+    }
+
+    .btn-return {
+        padding: 8px 16px;
+        background-color: #ffc107;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+
+    .btn-return:hover {
+        background-color: #e0a800;
+    }
+</style>

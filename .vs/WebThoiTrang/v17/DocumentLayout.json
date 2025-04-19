@@ -1,0 +1,588 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\sanphamcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\loaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\loaicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:2:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:2:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\pricehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\pricehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\nhacungcapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\nhacungcapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\controllers\\sanphamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\controllers\\sanphamscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:app_start\\bundleconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\controllers\\phieunhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\controllers\\phieunhapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\controllers\\accountsettingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:3:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:3:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:1:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:1:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\giohangcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\adminarearegistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\sanpham\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\sanpham\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\errorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:models\\homemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:models\\giohang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nhacungcap\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nhacungcap\\detail.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nhacungcap\\listnhacungcap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nhacungcap\\listnhacungcap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:properties\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\loai\\listloai.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\loai\\listloai.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\loai\\sanphamloai.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\loai\\sanphamloai.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\security\\vaitrotuychinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:security\\vaitrotuychinh.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\app_start\\filterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:app_start\\filterconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:packages.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\controllers\\backupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\controllers\\backupcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\views\\backup\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\views\\backup\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GioHangController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeToolTip": "Controllers\\GioHangController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwCUAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T02:58:42.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "PriceHelper.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
+              "RelativeDocumentMoniker": "Controllers\\PriceHelper.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
+              "RelativeToolTip": "Controllers\\PriceHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:57.232Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SanPhamController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SanPhamController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeToolTip": "Controllers\\SanPhamController.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAAACUAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:52.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NhaCungCapController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NhaCungCapController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NhaCungCapController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NhaCungCapController.cs",
+              "RelativeToolTip": "Controllers\\NhaCungCapController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:51.606Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AQIAAIIAAAAAAAAAAAAwwBEAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:41:51.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoaiController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\LoaiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoaiController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\LoaiController.cs",
+              "RelativeToolTip": "Controllers\\LoaiController.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:21.727Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SanPhamsController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\SanPhamsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\SanPhamsController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\SanPhamsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\SanPhamsController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAFcAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T02:50:18.25Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "NguoiDungController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NguoiDungController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NguoiDungController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NguoiDungController.cs",
+              "RelativeToolTip": "Controllers\\NguoiDungController.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAAwA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:01:59.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BundleConfig.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\BundleConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\BundleConfig.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\BundleConfig.cs",
+              "RelativeToolTip": "App_Start\\BundleConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T18:51:32.805Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AccountSettingsController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\AccountSettingsController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AccountSettingsController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\AccountSettingsController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AccountSettingsController.cs",
+              "ViewState": "AQIAADMAAAAAAAAAAAAYwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T18:53:41.871Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PhieuNhapController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\PhieuNhapController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\PhieuNhapController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\PhieuNhapController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\PhieuNhapController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-28T18:53:53.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "GioHangController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeToolTip": "Controllers\\GioHangController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-26T02:58:59.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ErrorController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\ErrorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ErrorController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\ErrorController.cs",
+              "RelativeToolTip": "Controllers\\ErrorController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:43:11.109Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "GioHangController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
+              "RelativeToolTip": "Controllers\\GioHangController.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAwCUAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:43:12.034Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AdminAreaRegistration.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\AdminAreaRegistration.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\AdminAreaRegistration.cs",
+              "RelativeToolTip": "Areas\\Admin\\AdminAreaRegistration.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:05:30.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Views\\NhaCungCap\\Detail.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\Detail.cshtml",
+              "RelativeToolTip": "Views\\NhaCungCap\\Detail.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:11:32.146Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GioHang.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\GioHang.cs",
+              "RelativeDocumentMoniker": "Models\\GioHang.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\GioHang.cs",
+              "RelativeToolTip": "Models\\GioHang.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADkAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:18:30.027Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "HomeModel.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\HomeModel.cs",
+              "RelativeDocumentMoniker": "Models\\HomeModel.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\HomeModel.cs",
+              "RelativeToolTip": "Models\\HomeModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:18:45.816Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Detail.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\SanPham\\Detail.cshtml",
+              "RelativeDocumentMoniker": "Views\\SanPham\\Detail.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\SanPham\\Detail.cshtml",
+              "RelativeToolTip": "Views\\SanPham\\Detail.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:21:29.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ListNhaCungCap.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\ListNhaCungCap.cshtml",
+              "RelativeDocumentMoniker": "Views\\NhaCungCap\\ListNhaCungCap.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\ListNhaCungCap.cshtml",
+              "RelativeToolTip": "Views\\NhaCungCap\\ListNhaCungCap.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:11:30.859Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Web.config",
+              "RelativeDocumentMoniker": "Views\\Web.config",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Web.config",
+              "RelativeToolTip": "Views\\Web.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-25T10:11:29.465Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:11:28.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Properties\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "Properties\\AssemblyInfo.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Properties\\AssemblyInfo.cs",
+              "RelativeToolTip": "Properties\\AssemblyInfo.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T10:11:20.882Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "SanPhamLoai.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\SanPhamLoai.cshtml",
+              "RelativeDocumentMoniker": "Views\\Loai\\SanPhamLoai.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\SanPhamLoai.cshtml",
+              "RelativeToolTip": "Views\\Loai\\SanPhamLoai.cshtml",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:05:04.098Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ListLoai.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\ListLoai.cshtml",
+              "RelativeDocumentMoniker": "Views\\Loai\\ListLoai.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\ListLoai.cshtml",
+              "RelativeToolTip": "Views\\Loai\\ListLoai.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-25T10:05:07.65Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "VaiTroTuyChinh.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Security\\VaiTroTuyChinh.cs",
+              "RelativeDocumentMoniker": "Security\\VaiTroTuyChinh.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Security\\VaiTroTuyChinh.cs",
+              "RelativeToolTip": "Security\\VaiTroTuyChinh.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:25:42.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "App_Start\\RouteConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:25:19.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "FilterConfig.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\FilterConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\FilterConfig.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\FilterConfig.cs",
+              "RelativeToolTip": "App_Start\\FilterConfig.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:25:18.127Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Global.asax.cs",
+              "RelativeDocumentMoniker": "Global.asax.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Global.asax.cs",
+              "RelativeToolTip": "Global.asax.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:24:47.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "packages.config",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\packages.config",
+              "RelativeDocumentMoniker": "packages.config",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\packages.config",
+              "RelativeToolTip": "packages.config",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-03-25T09:24:46.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAUwBkAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2024-12-30T11:39:59.326Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "BackupController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\BackupController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BackupController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\BackupController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\BackupController.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-30T11:25:38.834Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\Backup\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Backup\\Index.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\Backup\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Backup\\Index.cshtml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-12-30T11:25:15.372Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 648,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

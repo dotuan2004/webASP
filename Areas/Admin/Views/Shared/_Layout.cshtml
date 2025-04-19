@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Admin</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/styles.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Content/main.css" rel="stylesheet" />
+    <link href="#" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <style>
+        .sb-topnav {
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+
+        .search-input {
+            border-radius: 20px 0 0 20px;
+            border: none;
+            padding-left: 1rem;
+        }
+
+            .search-input:focus {
+                box-shadow: none;
+                border-color: #0d6efd;
+            }
+
+        .btn-primary {
+            border-radius: 0 20px 20px 0;
+        }
+
+        .user-dropdown {
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-menu {
+            border: none;
+            border-radius: 0.5rem;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+        }
+
+            .dropdown-item:hover {
+                background-color: #f8f9fa;
+            }
+
+        #sidebarToggle {
+            transition: transform 0.15s ease-in-out;
+        }
+
+            #sidebarToggle:hover {
+                transform: scale(1.1);
+            }
+
+        .sb-sidenav {
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-link {
+            padding: 1rem 1.5rem;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .nav-link:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+                padding-left: 1.75rem;
+            }
+
+        .sb-sidenav-menu-heading {
+            padding: 1.5rem 1rem 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .home-link {
+            color: #adb5bd;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            transition: color 0.15s ease-in-out;
+        }
+
+            .home-link:hover {
+                color: #fff;
+            }
+
+        .sb-sidenav-menu-nested .nav-link {
+            padding-left: 3rem;
+        }
+
+        .sb-nav-link-icon {
+            flex-shrink: 0;
+            width: 1.5rem;
+            text-align: center;
+            margin-right: 0.5rem;
+        }
+
+        /* Active nav link */
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff !important;
+            font-weight: 500;
+            border-left: 4px solid #0d6efd;
+            padding-left: calc(1.5rem - 4px);
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            border-left: 4px solid transparent;
+        }
+
+            .nav-link:hover:not(.active) {
+                background-color: rgba(255, 255, 255, 0.05);
+                border-left-color: rgba(13, 110, 253, 0.5);
+                padding-left: calc(1.5rem - 4px);
+            }
+    </style>
+</head>
+<body class="sb-nav-fixed">
+    <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+        <!-- Navbar Brand với logo -->
+        <a class="navbar-brand ps-3" href="@Url.Action("Index", "Home", new { area = "Admin" })">
+            <i class="fas fa-tshirt me-2"></i>
+            Quản Lý Thời Trang
+        </a>
+
+        <!-- Sidebar Toggle với animation -->
+        <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0"
+              action="@Url.Action("Search", "Admin", new { area = "Admin" })" method="GET">
+            <div class="input-group">
+                <input class="form-control search-input" type="text" name="keyword"
+                       placeholder="Tìm kiếm..." value="@ViewBag.Keyword" />
+                <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </form>
+
+        <!-- User Dropdown được cải thiện -->
+        <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+            <li class="nav-item dropdown">
+                @if (Session["TaiKhoan"] != null)
+                {
+                    var admin = (LTW.Models.KhachHang)Session["TaiKhoan"];
+                    <a class="nav-link dropdown-toggle user-dropdown" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-user-circle me-2"></i>
+                        <span class="d-none d-md-inline-block">@admin.TenKhachHang</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item py-2" href="@Url.Action("Index", "AccountSettings")">
+                                <i class="fas fa-user-cog me-2"></i>Cài đặt tài khoản
+                            </a>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item py-2" href="@Url.Action("DangXuat", "NguoiDung", new { area = "" })">
+                                <i class="fas fa-sign-out-alt me-2"></i>Đăng xuất
+                            </a>
+                        </li>
+                    </ul>
+                }
+            </li>
+        </ul>
+    </nav>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">QUẢN LÝ</div>
+                        <!-- Menu Sản phẩm -->
+                        <a class="nav-link @IsSelected("SanPhams")" href="@Url.Action("ListSanPham", "SanPhams")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
+                            Sản Phẩm
+                        </a>
+                        <!-- Menu Khuyến mãi -->
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseKhuyenMai">
+                            <div class="sb-nav-link-icon"><i class="fas fa-percent"></i></div>
+                            Khuyến Mãi
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseKhuyenMai" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("Index", "KhuyenMai")">
+                                    <i class="fas fa-list me-2"></i> Danh Sách Khuyến Mãi
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Create", "KhuyenMai")">
+                                    <i class="fas fa-plus-circle me-2"></i> Thêm Khuyến Mãi Mới
+                                </a>
+                                <a class="nav-link" href="@Url.Action("Report", "KhuyenMai")">
+                                    <i class="fas fa-chart-bar me-2"></i> Báo Cáo Khuyến Mãi
+                                </a>
+                            </nav>
+                        </div>
+                        <!-- Menu Danh Mục -->
+                        <a class="nav-link @IsSelected("Loais")" href="@Url.Action("ListLoai", "Loais")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tags"></i></div>
+                            Danh Mục
+                        </a>
+                        <!-- Menu Nhà Cung Cấp -->
+                        <a class="nav-link @IsSelected("NhaCungCaps")" href="@Url.Action("ListNhaCungCap", "NhaCungCaps")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-truck"></i></div>
+                            Nhà Cung Cấp
+                        </a>
+                        <!-- Menu Đơn Hàng -->
+                        <a class="nav-link @IsSelected("DonHangs")" href="@Url.Action("ListDonHang", "DonHangs")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
+                            Đơn Hàng
+                        </a>
+
+                        <div class="sb-sidenav-menu-heading">BÁO CÁO</div>
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBaoCao">
+                            <div class="sb-nav-link-icon"><i class="fas fa-chart-line"></i></div>
+                            Báo Cáo Doanh Thu
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseBaoCao" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("DoanhThuNgay", "BaoCao")">
+                                    <i class="fas fa-calendar-day me-2"></i> Doanh Thu Theo Ngày
+                                </a>
+                                <a class="nav-link" href="@Url.Action("DoanhThuThang", "BaoCao")">
+                                    <i class="fas fa-calendar-alt me-2"></i> Doanh Thu Theo Tháng
+                                </a>
+                                <a class="nav-link" href="@Url.Action("DoanhThuLoai", "BaoCao")">
+                                    <i class="fas fa-chart-pie me-2"></i> Doanh Thu Theo Loại SP
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBaoCaoSP">
+                            <div class="sb-nav-link-icon"><i class="fas fa-box-open"></i></div>
+                            Báo Cáo Sản Phẩm
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseBaoCaoSP" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("TopSanPham", "BaoCao")">
+                                    <i class="fas fa-star me-2"></i> Top Sản Phẩm Bán Chạy
+                                </a>
+                                <a class="nav-link" href="@Url.Action("TonKho", "BaoCao")">
+                                    <i class="fas fa-warehouse me-2"></i> Báo Cáo Tồn Kho
+                                </a>
+                                <a class="nav-link" href="@Url.Action("SanPhamHetHang", "BaoCao")">
+                                    <i class="fas fa-exclamation-triangle me-2"></i> Sản Phẩm Sắp Hết
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBaoCaoKH">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            Báo Cáo Khách Hàng
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseBaoCaoKH" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("TopKhachHang", "BaoCao")">
+                                    <i class="fas fa-crown me-2"></i> Top Khách Hàng
+                                </a>
+                                <a class="nav-link" href="@Url.Action("CongNo", "BaoCao")">
+                                    <i class="fas fa-money-bill-wave me-2"></i> Báo Cáo Công Nợ
+                                </a>
+                            </nav>
+                        </div>
+
+                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseBaoCaoNK">
+                            <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
+                            Nhật Ký & Theo Dõi
+                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                        </a>
+                        <div class="collapse" id="collapseBaoCaoNK" data-bs-parent="#sidenavAccordion">
+                            <nav class="sb-sidenav-menu-nested nav">
+                                <a class="nav-link" href="@Url.Action("NhatKyBanHang", "BaoCao")">
+                                    <i class="fas fa-clipboard-list me-2"></i> Nhật Ký Bán Hàng
+                                </a>
+                                <a class="nav-link" href="@Url.Action("TheoDoiDonHang", "BaoCao")">
+                                    <i class="fas fa-shipping-fast me-2"></i> Theo Dõi Đơn Hàng
+                                </a>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-menu-heading">HỆ THỐNG</div>
+                        <a class="nav-link @IsSelected("Backup")" href="@Url.Action("Index", "Backup")">
+                            <div class="sb-nav-link-icon"><i class="fas fa-database"></i></div>
+                            Sao Lưu & Phục Hồi
+                        </a>
+                    </div>
+                <div class="sb-sidenav-footer">
+                    <a href="@Url.Action("Index", "Home", new { area = "" })" class="home-link">
+                        <i class="fas fa-home me-2"></i>Về Trang Chủ
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content" style="padding-left: 240px; top: 70px; ">
+            @RenderBody()
+
+
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">
+                            Copyright &copy; SIXDO @DateTime.Now.Year
+                        </div>
+                        <div>
+                            <a href="#" class="text-muted text-decoration-none">Chính sách bảo mật</a>
+                            &middot;
+                            <a href="#" class="text-muted text-decoration-none">Điều khoản &amp; Điều kiện</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/402a0eb5a6.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/Areas/Admin/Scripts/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("upload", required: false)
+</body>
+
+</html>
+
+@helper IsSelected(string controller)
+{
+    var currentController = ViewContext.RouteData.Values["controller"].ToString();
+    if (currentController == controller)
+    {
+        @: active
+    }
+}

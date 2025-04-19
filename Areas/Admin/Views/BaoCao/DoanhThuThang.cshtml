@@ -1,0 +1,134 @@
+﻿@model LTW.Areas.Admin.Model.DoanhThuThangViewModel
+@{
+    ViewBag.Title = "Doanh Thu Theo Tháng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <!-- Filter Section -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <form method="get" class="row align-items-center">
+                    <div class="col-md-3">
+                        <label class="form-label">Chọn tháng</label>
+                        <input type="month" name="selectedDate" class="form-control"
+                               value="@Model.NgayBaoCao.ToString("yyyy-MM")" />
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">
+                            <i class="fas fa-filter me-1"></i> Lọc
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-success mt-4" onclick="exportToExcel()">
+                            <i class="fas fa-file-excel me-1"></i> Xuất Excel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Overview Cards -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-primary text-white mb-4">
+                    <div class="card-body">
+                        <h4>Số đơn hàng</h4>
+                        <h2 class="mb-0">@Model.SoDonHang</h2>
+                        @{
+                            var iconDonHang = Model.PhanTramDonHang >= 0 ? "fa-arrow-up" : "fa-arrow-down";
+                            var colorDonHang = Model.PhanTramDonHang >= 0 ? "text-success" : "text-danger";
+                        }
+                        <div class="small @colorDonHang">
+                            <i class="fas @iconDonHang"></i>
+                            @Math.Abs(Model.PhanTramDonHang)% so với tháng trước
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Tương tự cho các card khác -->
+        </div>
+
+        <!-- Charts -->
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        Doanh thu theo ngày trong tháng
+                    </div>
+                    <div class="card-body">
+                        <canvas id="revenueChart" width="100%" height="40"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script>
+        var ctx = document.getElementById("revenueChart").getContext('2d');
+        var myLineChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: @Html.Raw(Json.Encode(Enumerable.Range(1, Model.ChartData.Length).Select(i => i.ToString()))),
+                datasets: [{
+                    label: "Doanh thu",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(2,117,216,0.2)",
+                    borderColor: "rgba(2,117,216,1)",
+                    pointRadius: 5,
+                    pointBackgroundColor: "rgba(2,117,216,1)",
+                    pointBorderColor: "rgba(255,255,255,0.8)",
+                    pointHoverRadius: 5,
+                    pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                    pointHitRadius: 50,
+                    pointBorderWidth: 2,
+                    data: @Html.Raw(Json.Encode(Model.ChartData)),
+                }],
+            },
+            options: {
+                scales: {
+                    xAxes: [{
+                        gridLines: {
+                            display: false
+                        },
+                        ticks: {
+                            maxTicksLimit: 31
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            min: 0,
+                            maxTicksLimit: 5,
+                            callback: function(value) {
+                                return value.toLocaleString('vi-VN') + ' đ';
+                            }
+                        },
+                        gridLines: {
+                            color: "rgba(0, 0, 0, .125)",
+                        }
+                    }],
+                },
+                legend: {
+                    display: false
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return tooltipItem.yLabel.toLocaleString('vi-VN') + ' đ';
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        function exportToExcel() {
+            window.location.href = '@Url.Action("ExportDoanhThuThang", "BaoCao", new { area = "Admin" })?selectedDate=@Model.NgayBaoCao.ToString("yyyy-MM-dd")';
+        }
+    </script>
+}

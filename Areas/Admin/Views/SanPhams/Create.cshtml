@@ -1,0 +1,186 @@
+﻿@model LTW.Models.SanPham
+@using System.IO
+
+@{
+    ViewBag.Title = "Thêm sản phẩm mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Thêm Sản Phẩm Mới</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListSanPham", "SanPhams")">Sản phẩm</a></li>
+        <li class="breadcrumb-item active">Thêm mới</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-plus-circle me-1"></i>
+            Thông tin sản phẩm mới
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Create", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-box me-1"></i>Tên sản phẩm <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.TenSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập tên sản phẩm" } })
+                                @Html.ValidationMessageFor(model => model.TenSP, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-tags me-1"></i>Loại sản phẩm <span class="text-danger">*</span>
+                                </label>
+                                @Html.DropDownList("MaLoai", null, "-- Chọn loại --", new { @class = "form-select" })
+                                @Html.ValidationMessageFor(model => model.MaLoai, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-dollar-sign me-1"></i>Giá vốn <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.GiaVon, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập giá vốn" } })
+                                @Html.ValidationMessageFor(model => model.GiaVon, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-tag me-1"></i>Giá bán <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.GiaSP, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập giá bán" } })
+                                @Html.ValidationMessageFor(model => model.GiaSP, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-warehouse me-1"></i>Số lượng tồn <span class="text-danger">*</span>
+                                </label>
+                                @Html.EditorFor(model => model.SoLuongTon, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập số lượng" } })
+                                @Html.ValidationMessageFor(model => model.SoLuongTon, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-building me-1"></i>Nhà cung cấp <span class="text-danger">*</span>
+                                </label>
+                                @Html.DropDownList("MaNcc", null, "-- Chọn NCC --", new { @class = "form-select" })
+                                @Html.ValidationMessageFor(model => model.MaNCC, "", new { @class = "text-danger small" })
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <label class="form-label">
+                                    <i class="fas fa-align-left me-1"></i>Mô tả
+                                </label>
+                                @Html.TextAreaFor(model => model.MoTa, new { @class = "form-control", rows = "3", placeholder = "Nhập mô tả sản phẩm" })
+                                @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <label class="form-label">
+                                <i class="fas fa-image me-1"></i>Hình ảnh <span class="text-danger">*</span>
+                            </label>
+                            <div class="image-preview mb-3">
+                                <img id="preview" src="#" alt="Preview" class="img-preview d-none" />
+                                <div class="placeholder-text">
+                                    <i class="fas fa-cloud-upload-alt fa-3x mb-2"></i>
+                                    <p>Xem trước hình ảnh</p>
+                                </div>
+                                <input type="file" name="Hinh" id="imageInput" class="form-control" accept="image/*" required />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-end">
+                    <a href="@Url.Action("ListSanPham")" class="btn btn-secondary me-2">
+                        <i class="fas fa-arrow-left me-1"></i>Hủy
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i>Thêm mới
+                    </button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .form-control {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+    }
+
+    .image-preview {
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .placeholder-text {
+        color: #aaa;
+        text-align: center;
+    }
+
+    .img-preview {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        transition: transform 0.2s;
+    }
+</style>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#preview').attr('src', e.target.result).removeClass('d-none');
+                    $('.placeholder-text').hide();
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imageInput").change(function () {
+            readURL(this);
+        });
+    </script>
+}

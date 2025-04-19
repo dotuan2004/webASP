@@ -1,0 +1,169 @@
+﻿@model LTW.Models.DonHang
+@{
+    ViewBag.Title = "Chi tiết đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Chi Tiết Đơn Hàng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListDonHang", "DonHangs")">Đơn hàng</a></li>
+        <li class="breadcrumb-item active">Chi tiết đơn hàng #@Model.MaDH</li>
+    </ol>
+
+    <div class="row">
+        <!-- Thông tin đơn hàng -->
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-info-circle me-1"></i>
+                    Thông tin đơn hàng
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-3">
+                            <i class="fas fa-user text-primary me-2"></i>
+                            <strong>Khách hàng:</strong> @Model.KhachHang.TenKhachHang
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-calendar text-primary me-2"></i>
+                            <strong>Ngày đặt:</strong> @Model.NgayDatHang.ToString("dd/MM/yyyy")
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-truck text-primary me-2"></i>
+                            <strong>Ngày giao dự kiến:</strong> @Model.NgayGiaoHangDuKien.ToString("dd/MM/yyyy")
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-clock text-primary me-2"></i>
+                            <strong>Trạng thái:</strong>
+                            <span class="badge @(Model.TrangThai == "dagiao" ? "bg-success" : "bg-warning")">
+                                @(Model.TrangThai == "dagiao" ? "Đã giao" : "Chưa giao")
+                            </span>
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-credit-card text-primary me-2"></i>
+                            <strong>Thanh toán:</strong> @Model.ThanhToan.TenTT
+                        </li>
+                        <li class="mb-3">
+                            <i class="fas fa-money-bill text-primary me-2"></i>
+                            <strong>Trạng thái thanh toán:</strong>
+                            <span class="badge @(Model.TrangThaiThanhToan == "dathanhtoan" ? "bg-success" : "bg-warning")">
+                                @(Model.TrangThaiThanhToan == "dathanhtoan" ? "Đã thanh toán" : "Chưa thanh toán")
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chi tiết sản phẩm -->
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-shopping-cart me-1"></i>
+                    Chi tiết sản phẩm
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-end">Đơn giá</th>
+                                    <th class="text-end">Thành tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in ViewBag.ChiTietDonHang)
+                                {
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fas fa-box me-2"></i>
+                                                @item.SanPham.TenSP
+                                            </div>
+                                        </td>
+                                        <td class="text-center">
+                                            <span class="badge bg-secondary">@item.SoLuongMua</span>
+                                        </td>
+                                        <td class="text-end">@item.SanPham.GiaSP.ToString("#,##0", culture) ₫</td>
+                                        <td class="text-end">@item.TongTien.ToString("#,##0", culture) ₫</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="3" class="text-end">
+                                        <strong>Tổng tiền:</strong>
+                                    </td>
+                                    <td class="text-end">
+                                        <strong class="text-primary">@Model.TongTienDonHang.ToString("#,##0", culture) ₫</strong>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-end mt-3">
+                <a href="@Url.Action("ListDonHang")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Quay lại
+                </a>
+                <a href="#" class="btn btn-primary ms-2" onclick="window.print()">
+                    <i class="fas fa-print me-1"></i>In đơn hàng
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+       box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .card-header {
+       background-color: #f8f9fa;
+       border-bottom: 1px solid #e3e6ec;
+    }
+
+    .list-unstyled li {
+       padding: 8px 0;
+       border-bottom: 1px solid #eee;
+    }
+
+    .list-unstyled li:last-child {
+       border-bottom: none;
+    }
+
+    .badge {
+       padding: 0.5em 1em;
+       font-size: 0.9em;
+    }
+
+    .table th {
+       background-color: #f8f9fa;
+    }
+
+    .table tfoot {
+       font-size: 1.1em;
+    }
+
+    @*@media print {
+       .breadcrumb, .btn {
+           display: none !important;
+       }
+    }*@
+</style>
+
+<style>
+    @@media print {
+        .breadcrumb, .btn {
+            display: none !important;
+        }
+    }
+</style>

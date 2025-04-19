@@ -1,0 +1,194 @@
+﻿@model IEnumerable<LTW.Models.CartItem>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container">
+    <div class="x-box x-shadow">
+        <h2 class="cart-title" style="margin-bottom: 30px;">Giỏ Hàng</h2>
+
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Số lượng</th>
+                            <th>Tổng</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="cart-item">
+                                <td class="product-info" style="display: flex; align-items: center; gap: 20px;">
+                                    <img src="@item.hinh" alt="@item.TenSanPham" class="product-image" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px;" />
+                                    <div>
+                                        <h4 class="product-name">@item.TenSanPham</h4>
+                                        <a href="@Url.Action("Detail", "SanPham", new { @id = item.MaSP })" class="view-detail">Xem chi tiết</a>
+                                    </div>
+                                </td>
+                                <td class="price">@item.giaban.ToString("#,##0", culture) ₫</td>
+                                <td class="quantity">
+                                    @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { @id = item.MaSP }))
+                                    {
+                                        <div class="quantity-selector" style="display: flex; align-items: center;">
+                                            <button type="button" class="quantity-btn minus" onclick="updateQuantity(this, -1)" style="width: 30px; height: 30px; border: 1px solid #ddd;">-</button>
+                                            <input type="number" name="txtSolg" value="@item.isoluong" min="1" class="no-spinners"
+                                                   style="width: 50px; height: 30px; text-align: center; border: 1px solid #ddd; margin: 0 5px;" />
+                                            <button type="button" class="quantity-btn plus" onclick="updateQuantity(this, 1)" style="width: 30px; height: 30px; border: 1px solid #ddd;">+</button>
+                                            <button type="submit" class="update-btn" style="margin-left: 10px;">Cập nhật</button>
+                                        </div>
+                                    }
+                                </td>
+                                <td class="subtotal">@item.dThanhtien.ToString("#,##0", culture) ₫</td>
+                                <td class="actions">
+                                    <a href="@Url.Action("XoaGioHang", "GioHang", new { @id = item.MaSP })" class="remove-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="cart-summary" style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <span>Tổng số lượng:</span>
+                    <strong>@ViewBag.TongSoLuong sản phẩm</strong>
+                </div>
+                <div class="summary-row" style="display: flex; justify-content: space-between; margin-bottom: 20px;">
+                    <span>Tổng tiền:</span>
+                    <strong class="total-price">@String.Format("{0:#,##0}", @ViewBag.Tongtien) ₫</strong>
+                </div>
+                <div class="cart-actions" style="display: flex; justify-content: flex-end; gap: 15px;">
+                    <a href="@Url.Action("XoaTatcaGioHang")" class="btn btn-outline-danger">Xóa giỏ hàng</a>
+                    <a href="@Url.Action("DatHang", "GioHang")" class="btn btn-primary">Tiến hành đặt hàng</a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="empty-cart" style="text-align: center; padding: 50px 0;">
+                <i class="fas fa-shopping-cart" style="font-size: 48px; color: #ccc; margin-bottom: 20px;"></i>
+                <h3>Giỏ hàng của bạn đang trống</h3>
+                <p>Hãy thêm sản phẩm vào giỏ hàng để tiến hành mua hàng</p>
+                <a href="@Url.Action("ListSanPham", "SanPham")" class="btn btn-primary" style="margin-top: 20px;">
+                    Tiếp tục mua sắm
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SuccessMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["ErrorMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+@if (TempData["InfoMessage"] != null)
+{
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        @TempData["InfoMessage"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<style>
+    .no-spinners {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+    }
+
+        .no-spinners::-webkit-outer-spin-button,
+        .no-spinners::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+    .cart-title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .product-name {
+        font-size: 16px;
+        margin-bottom: 5px;
+    }
+
+    .view-detail {
+        color: #007bff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+    .quantity-btn {
+        background: white;
+        cursor: pointer;
+    }
+
+        .quantity-btn:hover {
+            background: #f8f9fa;
+        }
+
+    .update-btn {
+        padding: 5px 10px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .remove-btn {
+        color: #dc3545;
+        text-decoration: none;
+    }
+
+    .total-price {
+        color: #dc3545;
+        font-size: 20px;
+    }
+</style>
+
+<script>
+    function updateQuantity(button, change) {
+        var input = button.parentElement.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        var newValue = currentValue + change;
+
+        if (newValue >= 1) {
+            input.value = newValue;
+        }
+    }
+</script>
+
+<script>
+    // Tự động ẩn alert sau 3 giây
+    setTimeout(function () {
+        $('.alert').alert('close');
+    }, 3000);
+</script>

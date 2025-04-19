@@ -1,0 +1,223 @@
+﻿@model IEnumerable<LTW.Models.SanPham>
+@{
+    ViewBag.Title = "ListSanPham";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản Lý Sản Phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách sản phẩm</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fas fa-table me-1"></i>
+                Danh sách sản phẩm
+            </div>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="fas fa-plus me-1"></i>Thêm sản phẩm mới
+            </a>
+        </div>
+        <div class="card-body">
+            <table id="productTable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Hình Ảnh</th>
+                        <th>Giá Sản Phẩm</th>
+                        <th>Số Lượng Tồn</th>
+                        <th>Mô Tả</th>
+                        <th>Loại</th>
+                        <th>Nhà Cung Cấp</th>
+                        <th style="width: 150px;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TenSP</td>
+                            <td class="text-center">
+                                <img src="@item.Hinh" class="product-img" alt="@item.TenSP" />
+                            </td>
+                            <td class="text-end">@item.GiaSP.ToString("#,##0", culture) ₫</td>
+                            <td class="text-center">@item.SoLuongTon</td>
+                            <td>@item.MoTa</td>
+                            <td>@item.MaLoai</td>
+                            <td>@item.NCC.TenNCC</td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action("Edit", new { id = item.MaSP })" class="btn btn-warning btn-sm">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="@Url.Action("Detail", new { id = item.MaSP })" class="btn btn-info btn-sm">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    <a href="@Url.Action("Delete", new { id = item.MaSP })" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+    .btn-group > .btn {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .breadcrumb {
+        background-color: #f8f9fa;
+        padding: 0.75rem 1rem;
+        border-radius: 0.25rem;
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6ec;
+    }
+
+    card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .form-control {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem var(--primary-shadow);
+    }
+
+    .image-preview {
+        border: 2px dashed #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        min-height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+
+    .image-preview.dragging {
+        background-color: rgba(13,110,253,.1);
+        border-color: var(--primary-color);
+    }
+
+    .img-preview {
+        max-width: 100%;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 4px;
+    }
+
+    .placeholder-text {
+        color: #aaa;
+        text-align: center;
+        position: absolute;
+    }
+
+    .btn {
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255,255,255,0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    .modal-confirm {
+        max-width: 400px;
+    }
+
+    .modal-confirm .modal-content {
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .modal-confirm .modal-header {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .modal-confirm .modal-footer {
+        border-top: none;
+        padding-top: 0;
+    }
+</style>
+
+@section scripts {
+    <script>
+       $(document).ready(function () {
+           $('#productTable').DataTable({
+               "pageLength": 10,
+               "language": {
+                   "lengthMenu": "Hiển thị _MENU_ sản phẩm mỗi trang",
+                   "zeroRecords": "Không tìm thấy sản phẩm nào",
+                   "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                   "infoEmpty": "Không có sản phẩm nào",
+                   "infoFiltered": "(lọc từ _MAX_ sản phẩm)",
+                   "search": "Tìm kiếm:",
+                   "paginate": {
+                       "first": "Đầu",
+                       "last": "Cuối",
+                       "next": "Sau",
+                       "previous": "Trước"
+                   }
+               }
+           });
+       });
+    </script>
+}

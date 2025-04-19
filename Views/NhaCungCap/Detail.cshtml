@@ -1,0 +1,158 @@
+﻿@model LTW.Models.NCC
+
+@{
+    ViewBag.Title = "Chi tiết nhà cung cấp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .detail-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .detail-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        border: 1px solid #e3ddbb;
+    }
+
+    .detail-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e3ddbb;
+    }
+
+    .supplier-icon {
+        width: 60px;
+        height: 60px;
+        background-color: #f8f9fa;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 20px;
+    }
+
+        .supplier-icon i {
+            font-size: 24px;
+            color: #333;
+        }
+
+    .supplier-title {
+        margin: 0;
+        font-size: 24px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .detail-item {
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .detail-label {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+    }
+
+    .detail-value {
+        font-size: 16px;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        font-weight: 500;
+    }
+
+    .btn-edit {
+        background-color: #333;
+        color: #fff;
+        border: 1px solid #333;
+    }
+
+        .btn-edit:hover {
+            background-color: #000;
+            color: #fff;
+            text-decoration: none;
+        }
+
+    .btn-back {
+        background-color: transparent;
+        color: #333;
+        border: 1px solid #333;
+    }
+
+        .btn-back:hover {
+            background-color: #f5f5f5;
+            text-decoration: none;
+            color: #333;
+        }
+</style>
+
+<div class="detail-container">
+    <div class="detail-card">
+        <div class="detail-header">
+            <div class="supplier-icon">
+                <i class="fas fa-building"></i>
+            </div>
+            <h1 class="supplier-title">@Model.TenNCC</h1>
+        </div>
+
+        <div class="detail-grid">
+            <div class="detail-item">
+                <div class="detail-label">Email</div>
+                <div class="detail-value">
+                    <i class="fas fa-envelope" style="margin-right: 8px;"></i>
+                    @Model.Email
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Số điện thoại</div>
+                <div class="detail-value">
+                    <i class="fas fa-phone" style="margin-right: 8px;"></i>
+                    @Model.SDT
+                </div>
+            </div>
+
+            <div class="detail-item" style="grid-column: 1 / -1;">
+                <div class="detail-label">Địa chỉ</div>
+                <div class="detail-value">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i>
+                    @Model.Diachi
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            @*@Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaNCC }, new { @class = "btn btn-edit" })*@
+            @Html.ActionLink("Quay lại danh sách", "ListNhaCungCap", null, new { @class = "btn btn-back" })
+        </div>
+    </div>
+</div>

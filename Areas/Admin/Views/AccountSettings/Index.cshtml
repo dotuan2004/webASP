@@ -1,0 +1,188 @@
+﻿@model LTW.Models.KhachHang
+@{
+    ViewBag.Title = "Cài đặt tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .settings-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .card {
+        border: none;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+        margin-bottom: 30px;
+    }
+
+    .card-header {
+        background-color: transparent;
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        padding: 1rem 1.35rem;
+    }
+
+    .form-label {
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+    }
+
+    .alert {
+        border-radius: 0.35rem;
+        margin-bottom: 1rem;
+    }
+
+    .alert-success {
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border-color: #badbcc;
+    }
+
+    .alert-danger {
+        color: #842029;
+        background-color: #f8d7da;
+        border-color: #f5c2c7;
+    }
+
+    .icon-container {
+        width: 35px;
+        height: 35px;
+        background-color: rgba(33, 40, 50, 0.03);
+        border-radius: 0.35rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0.75rem;
+    }
+
+    .btn-save {
+        padding: 0.75rem 1.5rem;
+        font-weight: 500;
+    }
+
+    .divider {
+        margin: 2rem 0;
+        border-top: 1px solid rgba(33, 40, 50, 0.125);
+    }
+</style>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Cài Đặt Tài Khoản</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Cài đặt tài khoản</li>
+    </ol>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="settings-container">
+        <!-- Thông tin cá nhân -->
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center">
+                <div class="icon-container">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div>
+                    <h5 class="card-title mb-0">Thông Tin Cá Nhân</h5>
+                    <div class="small text-muted">Cập nhật thông tin cá nhân của bạn</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateProfile", "AccountSettings", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.MaKH)
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Tên người dùng</label>
+                            @Html.TextBoxFor(m => m.TenKhachHang, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email" })
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Số điện thoại</label>
+                            @Html.TextBoxFor(m => m.SDT, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Địa chỉ</label>
+                            @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary btn-save">
+                            <i class="fas fa-save me-2"></i>Lưu thay đổi
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <!-- Đổi mật khẩu -->
+        <div class="card">
+            <div class="card-header d-flex align-items-center">
+                <div class="icon-container">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div>
+                    <h5 class="card-title mb-0">Đổi Mật Khẩu</h5>
+                    <div class="small text-muted">Cập nhật mật khẩu của bạn</div>
+                </div>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm("ChangePassword", "AccountSettings", FormMethod.Post))
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Mật khẩu hiện tại</label>
+                        <input type="password" name="currentPassword" class="form-control" required>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Mật khẩu mới</label>
+                            <input type="password" name="newPassword" class="form-control" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Xác nhận mật khẩu mới</label>
+                            <input type="password" name="confirmPassword" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary btn-save">
+                            <i class="fas fa-key me-2"></i>Đổi mật khẩu
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Auto-hide alerts after 5 seconds
+    setTimeout(function() {
+        $('.alert').fadeOut('slow');
+    }, 5000);
+</script>

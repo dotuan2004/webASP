@@ -1,0 +1,353 @@
+﻿@model IEnumerable<LTW.Models.DonHang>
+@{
+    ViewBag.Title = "Lịch Sử Đơn Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container" style="margin-top: 20px;">
+    <div class="x-box x-shadow">
+        <h2 class="text-center mb-4">Lịch sử đơn hàng</h2>
+
+        @if (Model.Any())
+        {
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Trạng thái</th>
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>#@item.MaDH</td>
+                                <td>@item.NgayDatHang.ToString("dd/MM/yyyy HH:mm")</td>
+                                <td>@String.Format(culture, "{0:#,##0}", item.TongTienDonHang) ₫</td>
+                                <td>
+                                    @if (item.TrangThai == "chuagiao")
+                                    {
+                                        <span class="status-badge warning">Chưa giao</span>
+                                    }
+                                    else if (item.TrangThai == "dagiao")
+                                    {
+                                        <span class="status-badge success">Đã giao</span>
+                                    }
+                                    else if (item.TrangThai == "dahuy")
+                                    {
+                                        <span class="status-badge danger">Đã hủy</span>
+                                    }
+                                    else if (item.TrangThai == "trahang")
+                                    {
+                                        <span class="status-badge info">Đã trả hàng</span>
+                                    }
+
+                                    <!-- Thêm hiển thị trạng thái thanh toán -->
+                                    @if (item.TrangThaiThanhToan == "dathanhtoan")
+                                    {
+                                        <span class="status-badge success">Đã thanh toán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="status-badge warning">Chưa thanh toán</span>
+                                    }
+                                </td>
+                                <td>
+                                    <button class="btn-view" onclick="xemChiTiet(@item.MaDH, @item.MaTT)">
+                                        Xem chi tiết
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="empty-state">
+                <i class="fas fa-shopping-bag"></i>
+                <h3>Bạn chưa có đơn hàng nào</h3>
+                <p>Hãy mua sắm để có những trải nghiệm tuyệt vời cùng SIXDO</p>
+                <a href="@Url.Action("ListSanPham", "SanPham")" class="btn-shop">
+                    Mua sắm ngay
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Custom Modal -->
+<div id="orderDetailModal" class="custom-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>Chi tiết đơn hàng</h3>
+            <span class="close-modal">&times;</span>
+        </div>
+        <div class="modal-body">
+            <!-- Nội dung sẽ được load bằng Ajax -->
+        </div>
+    </div>
+</div>
+
+<style>
+    .x-box {
+        background: #f9f4dd;
+        padding: 30px;
+        margin: 20px 0;
+        border-radius: 8px;
+    }
+
+    .x-shadow {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    .table th {
+        background-color: #f8f9fa;
+        padding: 12px;
+        text-align: left;
+        border-bottom: 2px solid #dee2e6;
+    }
+
+    .table td {
+        padding: 12px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .status-badge {
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .status-badge.warning {
+        background-color: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.danger {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+
+    .status-badge.info {
+        background-color: #17a2b8;
+        color: white;
+    }
+
+    .status-badge.payment {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .status-badge.pending-payment {
+        background-color: #ffc107;
+        color: black;
+    }
+
+    .btn-view {
+        padding: 6px 12px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .btn-view:hover {
+        background-color: #555;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 50px 0;
+    }
+
+    .empty-state i {
+        font-size: 48px;
+        color: #ccc;
+        margin-bottom: 20px;
+    }
+
+    .btn-shop {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        margin-top: 20px;
+    }
+
+    .btn-shop:hover {
+        background-color: #555;
+        color: white;
+    }
+
+    /* Custom Modal Styles */
+    .custom-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+        z-index: 1031;
+    }
+
+    .modal-content {
+        position: relative;
+        background-color: #f9f4dd;
+        margin: 5% auto;
+        padding: 0;
+        width: 80%;
+        max-width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-header {
+        padding: 15px 20px;
+        border-bottom: 1px solid #dee2e6;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .close-modal {
+        font-size: 28px;
+        font-weight: bold;
+        color: #666;
+        cursor: pointer;
+    }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+    .modal-body {
+        padding: 20px;
+        max-height: 70vh;
+        overflow-y: auto;
+    }
+</style>
+
+@section scripts {
+    <script>
+        // Hiển thị modal
+        function xemChiTiet(maDH, maTT) {
+            var modal = document.getElementById('orderDetailModal');
+            var modalBody = modal.querySelector('.modal-body');
+
+            // Hiển thị loading
+            modalBody.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin"></i></div>';
+            modal.style.display = 'block';
+
+            // Load nội dung
+            $.get('@Url.Action("ChiTietDonHang", "NguoiDung")', { id: maDH, matt: maTT })
+                .done(function(data) {
+                    modalBody.innerHTML = data;
+                })
+                .fail(function() {
+                    modalBody.innerHTML = '<div style="color: red; text-align: center;">Có lỗi xảy ra khi tải dữ liệu</div>';
+                });
+        }
+
+         // Hàm xem chi tiết hiện tại
+        function xemChiTiet(maDH, maTT) {
+            var modal = document.getElementById('orderDetailModal');
+            var modalBody = modal.querySelector('.modal-body');
+
+            modalBody.innerHTML = '<div style="text-align: center; padding: 20px;"><i class="fas fa-spinner fa-spin"></i></div>';
+            modal.style.display = 'block';
+
+            $.get('@Url.Action("ChiTietDonHang", "NguoiDung")', { id: maDH, matt: maTT })
+                .done(function(data) {
+                    modalBody.innerHTML = data;
+                })
+                .fail(function() {
+                    modalBody.innerHTML = '<div style="color: red; text-align: center;">Có lỗi xảy ra khi tải dữ liệu</div>';
+                });
+        }
+
+        // Thêm hàm hủy đơn hàng
+        function huyDonHang(maDH, maTT) {
+            if (confirm('Bạn có chắc chắn muốn hủy đơn hàng này không?')) {
+                // Hiển thị loading nếu cần
+                $.ajax({
+                    url: '@Url.Action("HuyDonHang", "NguoiDung")',
+                    type: 'POST',
+                    data: { id: maDH, matt: maTT },
+                    success: function(response) {
+                        console.log('Response:', response); // Debug response
+
+                        if (response && response.success === true) {
+                            alert('Đơn hàng đã được hủy thành công!');
+                            window.location.reload();
+                        } else {
+                            alert(response.message || 'Không thể hủy đơn hàng. Vui lòng thử lại sau!');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error:', error);
+                        console.error('Status:', status);
+                        console.error('Response:', xhr.responseText);
+                        alert('Có lỗi xảy ra khi hủy đơn hàng. Vui lòng thử lại sau!');
+                    }
+                });
+            }
+        }
+
+        // Hàm trả hàng
+        function traHang(maDH, maTT) {
+            if (confirm('Bạn có chắc chắn muốn trả hàng này không?')) {
+                $.ajax({
+                    url: '@Url.Action("TraHang", "NguoiDung")',
+                    type: 'POST',
+                    data: { id: maDH, matt: maTT },
+                    success: function(response) {
+                        if (response.success) {
+                            alert(response.message);
+                            window.location.reload();
+                        } else {
+                            alert(response.message || 'Không thể xử lý trả hàng. Vui lòng thử lại sau!');
+                        }
+                    },
+                    error: function() {
+                        alert('Có lỗi xảy ra khi xử lý trả hàng. Vui lòng thử lại sau!');
+                    }
+                });
+            }
+        }
+
+        // Đóng modal khi click nút đóng
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('orderDetailModal').style.display = 'none';
+        }
+
+        // Đóng modal khi click bên ngoài
+        window.onclick = function(event) {
+            var modal = document.getElementById('orderDetailModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+    </script>
+}

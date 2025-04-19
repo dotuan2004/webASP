@@ -1,0 +1,497 @@
+﻿@model LTW.Models.SanPham
+@{
+    ViewBag.Title = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .product-detail-container {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .product-detail-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 30px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .product-image-container {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        background-color: #f8f9fa;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .product-image:hover {
+        transform: scale(1.05);
+    }
+
+    .product-title {
+        font-size: 32px;
+        font-weight: 500;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .product-brand {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        color: #666;
+    }
+
+    .brand-link {
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        margin-left: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .brand-link:hover {
+        color: #000;
+    }
+
+    .product-description {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #666;
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .product-price {
+        font-size: 28px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 30px;
+        padding: 15px 20px;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+        display: inline-block;
+    }
+
+    .back-button {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+        border: 1px solid #333;
+    }
+
+    .back-button:hover {
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        }
+
+    .product-details-table {
+        width: 100%;
+        margin-top: 40px;
+        border: none;
+    }
+
+    .product-details-table th,
+    .product-details-table td {
+        padding: 15px 20px;
+        border: none;
+        background-color: #f8f9fa;
+    }
+
+    .product-details-table tr:nth-child(even) th,
+    .product-details-table tr:nth-child(even) td {
+        background-color: #fff;
+    }
+
+    .product-details-table th {
+        font-weight: 500;
+        color: #333;
+        width: 200px;
+    }
+
+    .product-details-table td {
+        color: #666;
+    }
+
+    .section-title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+        margin: 40px 0 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #e3ddbb;
+    }
+
+    .stock-status {
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 500;
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        margin-left: 10px;
+    }
+
+    /* Add new styles for related products */
+    .related-products {
+        margin-top: 60px;
+    }
+
+    .related-products-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+    }
+
+    .related-products-title {
+        font-size: 24px;
+        font-weight: 500;
+        color: #333;
+    }
+
+    .related-products-nav {
+        display: flex;
+        gap: 10px;
+    }
+
+    .nav-button {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ddd;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background: #f5f5f5;
+    }
+
+    .nav-button i {
+        color: #333;
+    }
+
+    .related-products-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 20px;
+        overflow: hidden;
+    }
+
+    .related-product-card {
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .related-product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .related-product-image {
+        width: 100%;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        margin-bottom: 15px;
+    }
+
+    .related-product-name {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 8px;
+        text-decoration: none;
+    }
+
+    .related-product-name:hover {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .related-product-price {
+        font-size: 14px;
+        color: #666;
+    }
+
+    .special-price {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    /* Nút thêm sản phẩm vào giỏ hàng */
+    .btn-add-product {
+        width: 100%;
+        height: 50px;
+        background-color: #333;
+        color: white;
+        padding: 8px;
+        border: none;
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-add-product:hover {
+        color: white !important;
+        background-color: #999;
+        font-weight: bold;
+        transition: ease-in-out 400ms;
+    }
+
+    .btn-add-product:active {
+        transform: scale(0.98);
+        background-color: #666;
+    }
+
+    .btn-add-product:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.3);
+        color: white;
+    }
+
+    .btn-add-product::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease-out, height 0.6s ease-out;
+        color: white;
+    }
+
+    .btn-add-product:active::after {
+        width: 300px;
+        height: 300px;
+        opacity: 0;
+    }
+
+    .quantity-btn {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ddd;
+    }
+
+    .quantity-input {
+        width: 60px;
+        height: 40px;
+        text-align: center;
+        border: 1px solid #ddd;
+        margin: 0 10px;
+    }
+
+    .no-spinners {
+        -webkit-appearance: none;
+        -moz-appearance: textfield;
+        appearance: none;
+    }
+
+    .no-spinners::-webkit-outer-spin-button,
+    .no-spinners::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+<main>
+    <div class="container">
+        <div class="x-box x-shadow summary">
+            <div class="row mx-0">
+                <div class="col l-6 m-0 c-0">
+                    <div class="carousel">
+                        <div class="wrapper x-shadow">
+                            <ul class="carousel__slides" style="padding-left: 0px;">
+                                <li class="carousel__slide">
+                                    <figure>
+                                        <div>
+                                            <img src=@Url.Content("~/" +  @Html.DisplayFor(model => model.Hinh)) alt="ảnh sản phẩm" style="width: 600px; height: 600px; object-fit: contain;" />
+                                        </div>
+                                    </figure>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-6 m-0 c-0">
+                    <h1 class="distance sonly_size">@Html.DisplayFor(model => model.TenSP)</h1>
+                    <span class="brand sonly distance">
+                        Thương hiệu:
+                        <a href="/thuong-hieu/oem/" title="">
+                            <strong>
+                                @Html.DisplayFor(model => model.NCC.TenNCC)
+                            </strong>
+                        </a>
+                    </span>
+                    <i class="fa fa-link"></i>
+                    <hr class="my-1">
+
+                    <div class="product-info distance" style="display: flex; margin-top: 18px; font-size: 20px">
+                        <span class="special-price">
+                            @{
+                                var culture = new System.Globalization.CultureInfo("vi-VN");
+                            }
+                            @Model.GiaSP.ToString("#,##0", culture) ₫
+                        </span>
+                    </div>
+
+                    <div class="quantity-selector distance" style="display: flex; align-items: center; margin: 20px 0;">
+                        <button class="quantity-btn minus" onclick="updateQuantity(-1)">-</button>
+                        <input type="number"
+                               id="quantity"
+                               value="1"
+                               min="1"
+                               class="no-spinners quantity-input"/>
+                        <button class="quantity-btn plus" onclick="updateQuantity(1)">+</button>
+                    </div>
+
+                    <div class="add-to-cart distance">
+                        <button onclick="themVaoGioHang(@Model.MaSP)" class="btn btn-add-product">
+                            THÊM VÀO GIỎ HÀNG
+                        </button>
+                    </div>
+
+                    <h2 class="sonly distance sonly_size" style="margin-top: 20px;">Mô Tả Sản Phẩm</h2>
+                    <span class="sdes distance" style="font-size: 18px">@Html.DisplayFor(model => model.MoTa)</span>
+                </div>
+
+                <div class="col l-11 m-0 c-0" style="margin: 20px 0 0 0">
+                    <h2 style="margin: 12px 0">Chi Tiết Sản Phẩm</h2>
+                    <table class="table table-hover table-striped" style="border: 1px solid #dee2e6 !important; ">
+                        <tbody>
+                            <tr>
+                                <th> Loại </th>
+                                <td class="breakall">@Html.DisplayFor(model => model.Loai.TenLoai)</td>
+                            </tr>
+                            <tr>
+                                <th> Thương hiệu </th>
+                                <td class="breakall">@Html.DisplayFor(model => model.NCC.TenNCC)</td>
+                            </tr>
+                            <tr>
+                                <th> Số lượng </th>
+                                <td class="breakall">@Html.DisplayFor(model => model.SoLuongTon)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="related-products">
+    <div class="related-products-header">
+        <h2 class="related-products-title">CÓ THỂ BẠN CŨNG THÍCH</h2>
+        <div class="related-products-nav">
+            <button class="nav-button prev-button">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="nav-button next-button">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="related-products-grid">
+        @foreach (var item in ViewBag.RelatedProducts)
+        {
+            <div class="related-product-card">
+                <a href="@Url.Action("Detail", "SanPham", new { id = item.MaSP })" class="related-product-link">
+                    <img src="@Url.Content("~/" + item.Hinh)" alt="@item.TenSP" class="related-product-image">
+                    <h3 class="related-product-name">@item.TenSP</h3>
+                    <div class="related-product-price">@item.GiaSP.ToString("N0") VND</div>
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const prevButton = document.querySelector('.prev-button');
+        const nextButton = document.querySelector('.next-button');
+        const productGrid = document.querySelector('.related-products-grid');
+        let currentPosition = 0;
+        const cardWidth = productGrid.offsetWidth / 5;
+        const totalProducts = @ViewBag.RelatedProducts.Count;
+        const maxPosition = Math.max(0, totalProducts - 5);
+
+        prevButton.addEventListener('click', () => {
+            if (currentPosition > 0) {
+                currentPosition--;
+                updatePosition();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentPosition < maxPosition) {
+                currentPosition++;
+                updatePosition();
+            }
+        });
+
+        function updatePosition() {
+            productGrid.style.transform = `translateX(-${currentPosition * cardWidth}px)`;
+        }
+    });
+</script>
+
+<script>
+    function updateQuantity(change) {
+        var quantityInput = document.getElementById('quantity');
+        var currentValue = parseInt(quantityInput.value);
+        var newValue = currentValue + change;
+
+        if (newValue >= 1) {
+            quantityInput.value = newValue;
+        }
+    }
+
+    function themVaoGioHang(maSP) {
+        var soLuong = parseInt(document.getElementById('quantity').value);
+
+        $.ajax({
+            type: 'POST',
+            url: '/GioHang/ThemGioHang',
+            data: {
+                id: maSP,
+                soLuong: soLuong
+            },
+            success: function(result) {
+                if (result.success) {
+                    alert(result.message);
+                    // Cập nhật số lượng trong giỏ hàng trên UI
+                    layTongSoLuongSP();
+                }
+            },
+            error: function() {
+                alert('Có lỗi xảy ra khi thêm vào giỏ hàng!');
+            }
+        });
+    }
+</script>

@@ -1,0 +1,144 @@
+﻿@{
+    ViewBag.Title = "Kết quả tìm kiếm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Kết Quả Tìm Kiếm</h1>
+    <p>Kết quả cho từ khóa: "@ViewBag.Keyword"</p>
+
+    <!-- Kết quả sản phẩm -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-box me-1"></i>
+            Sản phẩm
+            <a href="@Url.Action("ListSanPham", "SanPhams", new { searchString = ViewBag.Keyword })"
+               class="float-end">Xem tất cả</a>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Products.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Products)
+                            {
+                                <tr>
+                                    <td>@item.TenSP</td>
+                                    <td>@item.GiaSP.ToString("#,##0 ₫")</td>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "SanPhams", new { id = item.MaSP })"
+                                           class="btn btn-sm btn-info">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="mb-0">Không tìm thấy sản phẩm nào.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Kết quả đơn hàng -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-shopping-cart me-1"></i>
+            Đơn hàng
+            <a href="@Url.Action("ListDonHang", "DonHangs", new { searchString = ViewBag.Keyword })"
+               class="float-end">Xem tất cả</a>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Orders.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Products)
+                            {
+                                <tr>
+                                    <td>@item.TenSP</td>
+                                    <td>@item.GiaSP.ToString("#,##0 ₫")</td>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "SanPhams", new { id = item.MaSP })"
+                                           class="btn btn-sm btn-info">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="mb-0">Không tìm thấy đơn hàng nào.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Kết quả nhà cung cấp -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-building me-1"></i>
+            Nhà cung cấp
+            <a href="@Url.Action("ListNhaCungCap", "NhaCungCaps", new { searchString = ViewBag.Keyword })"
+               class="float-end">Xem tất cả</a>
+        </div>
+        <div class="card-body">
+            @if (ViewBag.Suppliers.Count > 0)
+            {
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in ViewBag.Products)
+                            {
+                                <tr>
+                                    <td>@item.TenSP</td>
+                                    <td>@item.GiaSP.ToString("#,##0 ₫")</td>
+                                    <td>
+                                        <a href="@Url.Action("Detail", "SanPhams", new { id = item.MaSP })"
+                                           class="btn btn-sm btn-info">
+                                            <i class="fas fa-info-circle"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <p class="mb-0">Không tìm thấy nhà cung cấp nào.</p>
+            }
+        </div>
+    </div>
+</div>

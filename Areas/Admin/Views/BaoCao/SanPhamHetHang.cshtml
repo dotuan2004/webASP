@@ -1,0 +1,130 @@
+﻿@model LTW.Areas.Admin.Model.SanPhamHetHangViewModel
+@{
+    ViewBag.Title = "Sản Phẩm Sắp Hết";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Sản Phẩm Sắp Hết Hàng</h1>
+
+        <!-- Thống kê tổng quan -->
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-danger text-white mb-4">
+                    <div class="card-body">
+                        <h4>Hết hàng</h4>
+                        <h2 class="mb-0">@Model.SoLuongHetHang</h2>
+                        <small>Cần nhập ngay</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-warning text-white mb-4">
+                    <div class="card-body">
+                        <h4>Sắp hết</h4>
+                        <h2 class="mb-0">@Model.SoLuongSapHet</h2>
+                        <small>Cần lên kế hoạch nhập</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-info text-white mb-4">
+                    <div class="card-body">
+                        <h4>Giá trị cần nhập</h4>
+                        <h2 class="mb-0">@Model.GiaTriCanNhap.ToString("#,##0") đ</h2>
+                        <small>Ước lượng giá trị nhập kho</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card bg-success text-white mb-4">
+                    <div class="card-body">
+                        <h4>Đã đặt hàng</h4>
+                        <h2 class="mb-0">@Model.SoLuongDaDatHang</h2>
+                        <small>Đang chờ nhập kho</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Danh sách sản phẩm -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fas fa-table me-1"></i>
+                    Danh sách sản phẩm sắp hết hàng
+                </div>
+                <div>
+                    <button class="btn btn-primary" onclick="window.location.href='@Url.Action("Create", "PhieuNhap")'">
+                        <i class="fas fa-plus me-1"></i> Tạo phiếu nhập
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Mã SP</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại SP</th>
+                            <th>Nhà cung cấp</th>
+                            <th>Tồn kho</th>
+                            <th>Đã bán (30 ngày)</th>
+                            <th>Giá vốn</th>
+                            <th>Cần nhập</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.DanhSachSanPham)
+                        {
+                            <tr>
+                                <td>@item.MaSP</td>
+                                <td>@item.TenSP</td>
+                                <td>@item.LoaiSP</td>
+                                <td>@item.NhaCungCap</td>
+                                <td class="text-end">@item.SoLuongTon.ToString("#,##0")</td>
+                                <td class="text-end">@item.DaBan30Ngay.ToString("#,##0")</td>
+                                <td class="text-end">@item.GiaVon.ToString("#,##0") đ</td>
+                                <td class="text-end">@item.SoLuongCanNhap.ToString("#,##0")</td>
+                                <td class="text-center">
+                                    <span class="badge @item.TrangThaiClass">@item.TrangThai</span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+@section scripts {
+    <script>
+        // Biểu đồ phân bố
+        var ctx = document.getElementById("distributionChart").getContext('2d');
+        var distributionChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: @Html.Raw(Json.Encode(ViewBag.Labels)),
+                datasets: [{
+                    label: 'Sản phẩm sắp hết',
+                    data: @Html.Raw(Json.Encode(ViewBag.ChartData)),
+                    backgroundColor: 'rgba(255, 193, 7, 0.5)',
+                    borderColor: 'rgba(255, 193, 7, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}

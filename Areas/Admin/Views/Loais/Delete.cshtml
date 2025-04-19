@@ -1,0 +1,113 @@
+﻿@model LTW.Models.Loai
+@{
+    ViewBag.Title = "Xóa loại sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Xóa Loại Sản Phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="@Url.Action("ListLoai", "Loais")">Danh mục</a></li>
+        <li class="breadcrumb-item active">Xóa loại</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-exclamation-triangle me-1 text-danger"></i>
+            Xác nhận xóa loại sản phẩm
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center mb-4">
+                        <img src="@Url.Content("~/" + Model.Hinh)"
+                             alt="@Model.TenLoai"
+                             class="category-image mb-3" />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-circle me-2"></i>
+                        Bạn có chắc chắn muốn xóa loại sản phẩm này? Hành động này không thể hoàn tác.
+                    </div>
+
+                    <table class="table table-details">
+                        <tr>
+                            <td class="text-muted" style="width: 150px;">
+                                <i class="fas fa-hashtag me-2"></i>Mã loại
+                            </td>
+                            <td><strong>@Model.MaLoai</strong></td>
+                        </tr>
+                        <tr>
+                            <td class="text-muted">
+                                <i class="fas fa-tag me-2"></i>Tên loại
+                            </td>
+                            <td><strong>@Model.TenLoai</strong></td>
+                        </tr>
+                    </table>
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="mt-4 text-end">
+                            <a href="@Url.Action("ListLoai")" class="btn btn-secondary me-2">
+                                <i class="fas fa-times me-1"></i>Hủy
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash me-1"></i>Xác nhận xóa
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+    }
+
+    .category-image {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        opacity: 0.8;
+    }
+
+    .table-details td {
+        padding: 1rem;
+        vertical-align: middle;
+        border-bottom: 1px solid #e3e6ec;
+    }
+
+    .table-details tr:last-child td {
+        border-bottom: none;
+    }
+
+    .btn {
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+        .btn-danger:hover {
+            background-color: #bb2d3b;
+            border-color: #b02a37;
+            transform: translateY(-1px);
+            transition: all 0.2s;
+        }
+
+    .alert {
+        border-radius: 4px;
+        padding: 1rem;
+    }
+</style>

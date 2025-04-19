@@ -1,0 +1,181 @@
+﻿@model IEnumerable<LTW.Models.DonHang>
+@{
+    ViewBag.Title = "Quản lý đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản Lý Đơn Hàng</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Danh sách đơn hàng</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-shopping-cart me-1"></i>
+            Danh sách đơn hàng
+        </div>
+        <div class="card-body">
+            @if (TempData["Message"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Message"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            }
+
+            <table id="orderTable" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Mã ĐH</th>
+                        <th>Khách hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Ngày giao</th>
+                        <th>Tổng tiền</th>
+                        <th>Trạng thái</th>
+                        <th>Trạng thái thanh toán</th>
+                        <th style="width: 150px;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <span class="badge bg-primary">#@item.MaDH</span>
+                            </td>
+                            <td>
+                                <i class="fas fa-user me-2"></i>@item.KhachHang.TenKhachHang
+                            </td>
+                            <td>
+                                <i class="fas fa-calendar me-2"></i>@item.NgayDatHang.ToString("dd/MM/yyyy")
+                            </td>
+                            <td>
+                                <i class="fas fa-truck me-2"></i>@item.NgayGiaoHangDuKien.ToString("dd/MM/yyyy")
+                            </td>
+                            <td class="text-end">
+                                @item.TongTienDonHang.ToString("#,##0", culture) ₫
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("UpdateStatus", "DonHangs", FormMethod.Post, new { id = "statusForm" + item.MaDH }))
+                                {
+                                    @Html.Hidden("id", item.MaDH)
+                                    @Html.Hidden("matt", item.MaTT)
+                                    <select name="trangthai" onchange="this.form.submit()" class="form-select status-select">
+                                        <option value="chuagiao" @(item.TrangThai == "chuagiao" ? "selected" : "")>
+                                            🕒 Chưa giao
+                                        </option>
+                                        <option value="dagiao" @(item.TrangThai == "dagiao" ? "selected" : "")>
+                                            ✅ Đã giao
+                                        </option>
+                                    </select>
+                                }
+                            </td>
+                            <td>
+                                @using (Html.BeginForm("UpdatePaymentStatus", "DonHangs", FormMethod.Post, new { id = "paymentForm" + item.MaDH }))
+                                {
+                                    @Html.Hidden("id", item.MaDH)
+                                    @Html.Hidden("matt", item.MaTT)
+                                    <select name="trangthaithanhtoan" onchange="this.form.submit()" class="form-select payment-select">
+                                        <option value="chuathanhtoan" @(item.TrangThaiThanhToan == "chuathanhtoan" ? "selected" : "")>
+                                            🕒 Chưa thanh toán
+                                        </option>
+                                        <option value="dathanhtoan" @(item.TrangThaiThanhToan == "dathanhtoan" ? "selected" : "")>
+                                            ✅ Đã thanh toán
+                                        </option>
+                                    </select>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <a href="@Url.Action("Detail", new { id = item.MaDH, matt = item.MaTT })" class="btn btn-info btn-sm" title="Chi tiết">
+                                        <i class="fas fa-info-circle"></i>
+                                    </a>
+                                    @using (Html.BeginForm("Delete", "DonHangs", new { id = item.MaDH, matt = item.MaTT }, FormMethod.Post, new { style = "display:inline" }))
+                                    {
+                                        <button type="submit" class="btn btn-danger btn-sm" title="Xóa" onclick="return confirm('Bạn có chắc muốn xóa đơn hàng này?');">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<style>
+    .status-select {
+        border-radius: 20px;
+        padding: 5px 15px;
+        font-size: 14px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        cursor: pointer;
+    }
+
+        .status-select:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+        }
+
+    .badge {
+        padding: 0.5em 1em;
+        font-size: 0.9em;
+    }
+
+    .table > :not(caption) > * > * {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+
+    .btn-group > .btn {
+        padding: 0.25rem 0.5rem;
+    }
+
+    .alert {
+        margin-bottom: 1rem;
+    }
+</style>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            $('#orderTable').DataTable({
+                "order": [[0, "desc"]], // Sắp xếp theo mã đơn hàng mới nhất
+                "pageLength": 10,
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ đơn hàng mỗi trang",
+                    "zeroRecords": "Không tìm thấy đơn hàng nào",
+                    "info": "Hiển thị trang _PAGE_ của _PAGES_",
+                    "infoEmpty": "Không có đơn hàng nào",
+                    "infoFiltered": "(lọc từ _MAX_ đơn hàng)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    }
+                }
+            });
+
+            // Tự động ẩn alert sau 3 giây
+            setTimeout(function () {
+                $(".alert").alert('close');
+            }, 3000);
+        });
+    </script>
+}

@@ -1,0 +1,245 @@
+﻿@{
+    ViewBag.Title = "Sao lưu & Phục hồi dữ liệu";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .backup-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .backup-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(33, 40, 50, 0.15);
+        margin-bottom: 30px;
+    }
+
+    .backup-card-header {
+        padding: 1.25rem;
+        border-bottom: 1px solid rgba(33, 40, 50, 0.125);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .backup-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .backup-item {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+        .backup-item:last-child {
+            border-bottom: none;
+        }
+
+    .backup-info {
+        flex: 1;
+    }
+
+    .backup-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-icon {
+        width: 35px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+        .btn-icon:hover {
+            transform: translateY(-2px);
+        }
+
+    .file-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .file-name {
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+
+    .file-date {
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .loading-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        text-align: center;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Sao Lưu & Phục Hồi Dữ Liệu</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Sao lưu & Phục hồi</li>
+    </ol>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle me-2"></i>
+            @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            @TempData["Error"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    }
+
+    <div class="backup-container">
+        <!-- Card Sao lưu -->
+        <div class="backup-card">
+            <div class="backup-card-header">
+                <div>
+                    <h5 class="mb-0">Sao Lưu Dữ Liệu</h5>
+                    <small class="text-muted">Tạo bản sao lưu mới của cơ sở dữ liệu</small>
+                </div>
+                @using (Html.BeginForm("Backup", "Backup", FormMethod.Post, new { onsubmit = "return showLoading('Đang sao lưu dữ liệu...')" }))
+                {
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-download me-2"></i>Tạo bản sao lưu
+                    </button>
+                }
+            </div>
+        </div>
+
+        <!-- Card Danh sách backup -->
+        <div class="backup-card">
+            <div class="backup-card-header">
+                <h5 class="mb-0">Danh Sách Bản Sao Lưu</h5>
+            </div>
+            <div class="backup-list">
+                @if (ViewBag.BackupFiles != null && ViewBag.BackupFiles.Count > 0)
+                {
+                    foreach (var file in ViewBag.BackupFiles)
+                    {
+                        <div class="backup-item">
+                            <div class="backup-info">
+                                <div class="file-info">
+                                    <span class="file-name">@file.Name</span>
+                                    <span class="file-date">
+                                        <i class="far fa-clock me-1"></i>
+                                        @file.LastWriteTime.ToString("dd/MM/yyyy HH:mm:ss")
+                                        <span class="ms-2">
+                                            <i class="fas fa-file me-1"></i>
+                                            @((file.Length / 1024.0 / 1024.0).ToString("F2")) MB
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="backup-actions">
+                                @using (Html.BeginForm("Restore", "Backup", FormMethod.Post, new { style = "display: inline;", onsubmit = "return confirmRestore()" }))
+                                {
+                                    <input type="hidden" name="fileName" value="@file.Name" />
+                                    <button type="submit" class="btn-icon btn-primary" title="Phục hồi">
+                                        <i class="fas fa-undo-alt"></i>
+                                    </button>
+                                }
+                                @using (Html.BeginForm("DeleteBackup", "Backup", FormMethod.Post, new { style = "display: inline;", onsubmit = "return confirmDelete()" }))
+                                {
+                                    <input type="hidden" name="fileName" value="@file.Name" />
+                                    <button type="submit" class="btn-icon btn-danger" title="Xóa">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center py-4 text-muted">
+                        <i class="fas fa-database fa-3x mb-3"></i>
+                        <p>Chưa có bản sao lưu nào.</p>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-content">
+        <div class="spinner-border text-primary spinner" role="status"></div>
+        <h5 id="loadingMessage">Đang xử lý...</h5>
+    </div>
+</div>
+
+<script>
+    function showLoading(message) {
+        if (!confirm('Bạn có chắc chắn muốn tạo bản sao lưu mới?')) {
+            return false;
+        }
+        $('#loadingMessage').text(message);
+        $('#loadingOverlay').css('display', 'flex');
+        return true;
+    }
+
+    function confirmRestore() {
+        if (!confirm('Bạn có chắc chắn muốn phục hồi dữ liệu từ bản sao lưu này? Dữ liệu hiện tại sẽ bị thay thế.')) {
+            return false;
+        }
+        $('#loadingMessage').text('Đang phục hồi dữ liệu...');
+        $('#loadingOverlay').css('display', 'flex');
+        return true;
+    }
+
+    function confirmDelete() {
+        return confirm('Bạn có chắc chắn muốn xóa bản sao lưu này?');
+    }
+
+    // Auto-hide alerts
+    setTimeout(function () {
+        $('.alert').fadeOut('slow');
+    }, 5000);
+</script>

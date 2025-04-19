@@ -1,0 +1,116 @@
+﻿@model IEnumerable<LTW.Models.KhuyenMai>
+@{
+    ViewBag.Title = "Quản lý khuyến mãi";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var culture = new System.Globalization.CultureInfo("vi-VN");
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản Lý Khuyến Mãi</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+        <li class="breadcrumb-item active">Khuyến mãi</li>
+    </ol>
+
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <i class="fas fa-percent me-1"></i>
+                Danh sách khuyến mãi
+            </div>
+            <a href="@Url.Action("Create")" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-1"></i>Thêm mới
+            </a>
+        </div>
+        <div class="card-body">
+            <table id="datatablesSimple" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>Mã KM</th>
+                        <th>Tên khuyến mãi</th>
+                        <th>Phần trăm giảm</th>
+                        <th>Thời gian</th>
+                        <th>Điều kiện</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaKM</td>
+                            <td>@item.TenKM</td>
+                            <td class="text-end">@item.PhanTramGiam%</td>
+                            <td>
+                                @item.NgayBatDau.ToString("dd/MM/yyyy") -
+                                @item.NgayKetThuc.ToString("dd/MM/yyyy")
+                            </td>
+                            <td class="text-end">
+                                @if (item.DieuKienApDung.HasValue)
+                                {
+                                    @item.DieuKienApDung.Value.ToString("#,##0", culture)
+                                    <span>₫</span>
+                                }
+                                else
+                                {
+                                    <span>Không có</span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                @{
+                                    var now = DateTime.Now;
+                                    var status = "";
+                                    var statusClass = "";
+
+                                    if (now < item.NgayBatDau)
+                                    {
+                                        status = "Sắp diễn ra";
+                                        statusClass = "bg-info";
+                                    }
+                                    else if (now > item.NgayKetThuc)
+                                    {
+                                        status = "Đã kết thúc";
+                                        statusClass = "bg-secondary";
+                                    }
+                                    else
+                                    {
+                                        status = "Đang diễn ra";
+                                        statusClass = "bg-success";
+                                    }
+                                }
+                                <span class="badge @statusClass">@status</span>
+                            </td>
+                            <td class="text-center">
+                                <a href="@Url.Action("Edit", new { id = item.MaKM })"
+                                   class="btn btn-warning btn-sm" title="Chỉnh sửa">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                <a href="@Url.Action("Details", new { id = item.MaKM })"
+                                   class="btn btn-info btn-sm" title="Chi tiết">
+                                    <i class="fas fa-info-circle"></i>
+                                </a>
+                                <a href="@Url.Action("Delete", new { id = item.MaKM })"
+                                   class="btn btn-danger btn-sm" title="Xóa"
+                                   onclick="return confirm('Bạn có chắc muốn xóa khuyến mãi này?');">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        window.addEventListener('DOMContentLoaded', event => {
+            const datatablesSimple = document.getElementById('datatablesSimple');
+            if (datatablesSimple) {
+                new simpleDatatables.DataTable(datatablesSimple);
+            }
+        });
+    </script>
+}
