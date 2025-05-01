@@ -67,7 +67,7 @@ namespace LTW.Controllers
             else
             {
                 sp.isoluong += soLuong;
-            }
+            }   
 
             return Json(new
             {
