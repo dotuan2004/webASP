@@ -3,7 +3,23 @@
   "WorkspaceRootPath": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\home\\contact.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\views\\nguoidung\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nguoidung\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nguoidung\\_chitietdonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nguoidung\\_chitietdonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\nguoidungcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -31,11 +47,11 @@
       "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:controllers\\nhacungcapcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\views\\nguoidung\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nguoidung\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nguoidung\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|d:\\clean\\webthoitrang\\webthoitrang\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
@@ -69,10 +85,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\areas\\admin\\controllers\\donhangscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:areas\\admin\\controllers\\donhangscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nguoidung\\_chitietdonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|solutionrelative:views\\nguoidung\\_chitietdonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{77A98F99-2A5A-4253-B76C-C7912C993CE5}|WebThoiTrang.csproj|D:\\clean\\WebThoiTrang\\WebThoiTrang\\views\\nguoidung\\lichsudonhang.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -226,37 +238,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PriceHelper.cs",
-              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
-              "RelativeDocumentMoniker": "Controllers\\PriceHelper.cs",
-              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
-              "RelativeToolTip": "Controllers\\PriceHelper.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:42:57.232Z",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAACACAAAAAAAAAAAAAC4CAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-02T02:38:02.931Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "SanPhamController.cs",
-              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
-              "RelativeDocumentMoniker": "Controllers\\SanPhamController.cs",
-              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
-              "RelativeToolTip": "Controllers\\SanPhamController.cs",
-              "ViewState": "AQIAAFoAAAAAAAAAAAAowAoAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:42:52.691Z",
+              "DocumentIndex": 1,
+              "Title": "Contact.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Home\\Contact.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Contact.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Home\\Contact.cshtml",
+              "RelativeToolTip": "Views\\Home\\Contact.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-02T02:37:57.735Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
+              "Title": "DangNhap.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\DangNhap.cshtml",
+              "RelativeDocumentMoniker": "Views\\NguoiDung\\DangNhap.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\DangNhap.cshtml",
+              "RelativeToolTip": "Views\\NguoiDung\\DangNhap.cshtml",
+              "ViewState": "AQIAALcAAAAAAAAAAAAAAMMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-02T02:36:26.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "LoaiController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\LoaiController.cs",
               "RelativeDocumentMoniker": "Controllers\\LoaiController.cs",
@@ -264,12 +289,11 @@
               "RelativeToolTip": "Controllers\\LoaiController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:42:21.727Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T09:42:21.727Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
@@ -277,12 +301,11 @@
               "RelativeToolTip": "Controllers\\HomeController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAEAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:41:51.281Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T09:41:51.281Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "GioHangController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
               "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
@@ -290,25 +313,24 @@
               "RelativeToolTip": "Controllers\\GioHangController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAVAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T02:58:42.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T02:58:42.105Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "NguoiDungController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NguoiDungController.cs",
               "RelativeDocumentMoniker": "Controllers\\NguoiDungController.cs",
               "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NguoiDungController.cs",
               "RelativeToolTip": "Controllers\\NguoiDungController.cs",
-              "ViewState": "AQIAAGkAAAAAAAAAAAAjwGwAAAASAAAA",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwH0AAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T10:01:59.518Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "NhaCungCapController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\NhaCungCapController.cs",
               "RelativeDocumentMoniker": "Controllers\\NhaCungCapController.cs",
@@ -316,12 +338,48 @@
               "RelativeToolTip": "Controllers\\NhaCungCapController.cs",
               "ViewState": "AQIAABAAAAAAAAAAAAAQwAUAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:42:51.606Z",
+              "WhenOpened": "2025-03-25T09:42:51.606Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_ChiTietDonHang.cshtml",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\_ChiTietDonHang.cshtml",
+              "RelativeDocumentMoniker": "Views\\NguoiDung\\_ChiTietDonHang.cshtml",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\_ChiTietDonHang.cshtml",
+              "RelativeToolTip": "Views\\NguoiDung\\_ChiTietDonHang.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-23T00:42:32.045Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "SanPhamController.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeDocumentMoniker": "Controllers\\SanPhamController.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\SanPhamController.cs",
+              "RelativeToolTip": "Controllers\\SanPhamController.cs",
+              "ViewState": "AQIAAFoAAAAAAAAAAAAowAoAAAAvAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:52.691Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "PriceHelper.cs",
+              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
+              "RelativeDocumentMoniker": "Controllers\\PriceHelper.cs",
+              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\PriceHelper.cs",
+              "RelativeToolTip": "Controllers\\PriceHelper.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T09:42:57.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "ThongTinCaNhan.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\ThongTinCaNhan.cshtml",
               "RelativeDocumentMoniker": "Views\\NguoiDung\\ThongTinCaNhan.cshtml",
@@ -333,19 +391,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "_ChiTietDonHang.cshtml",
-              "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\_ChiTietDonHang.cshtml",
-              "RelativeDocumentMoniker": "Views\\NguoiDung\\_ChiTietDonHang.cshtml",
-              "ToolTip": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\_ChiTietDonHang.cshtml",
-              "RelativeToolTip": "Views\\NguoiDung\\_ChiTietDonHang.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-23T00:42:32.045Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 14,
               "Title": "DangKy.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\DangKy.cshtml",
               "RelativeDocumentMoniker": "Views\\NguoiDung\\DangKy.cshtml",
@@ -357,7 +403,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "_ViewStart.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\_ViewStart.cshtml",
               "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
@@ -365,12 +411,11 @@
               "RelativeToolTip": "Views\\_ViewStart.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-25T10:11:28.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T10:11:28.283Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "VerifyOTP.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\VerifyOTP.cshtml",
               "RelativeDocumentMoniker": "Views\\NguoiDung\\VerifyOTP.cshtml",
@@ -378,12 +423,11 @@
               "RelativeToolTip": "Views\\NguoiDung\\VerifyOTP.cshtml",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-05-02T01:55:53.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T01:55:53.388Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 16,
               "Title": "BaoCaoController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\BaoCaoController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BaoCaoController.cs",
@@ -395,7 +439,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "DoanhThuNgay.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\BaoCao\\DoanhThuNgay.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaoCao\\DoanhThuNgay.cshtml",
@@ -407,7 +451,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "DoanhThuThang.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\BaoCao\\DoanhThuThang.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaoCao\\DoanhThuThang.cshtml",
@@ -419,7 +463,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 15,
               "Title": "ListDonHang.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\DonHangs\\ListDonHang.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\DonHangs\\ListDonHang.cshtml",
@@ -431,7 +475,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\DonHangs\\Detail.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\DonHangs\\Detail.cshtml",
@@ -443,7 +487,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "DonHangsController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\DonHangsController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\DonHangsController.cs",
@@ -455,7 +499,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 21,
               "Title": "LichSuDonHang.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NguoiDung\\LichSuDonHang.cshtml",
               "RelativeDocumentMoniker": "Views\\NguoiDung\\LichSuDonHang.cshtml",
@@ -467,7 +511,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 22,
               "Title": "AdminController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\AdminController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminController.cs",
@@ -479,7 +523,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 23,
               "Title": "PhieuNhapController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\PhieuNhapController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\PhieuNhapController.cs",
@@ -491,7 +535,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 24,
               "Title": "AdminAuthorizeAttribute.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\AdminAuthorizeAttribute.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminAuthorizeAttribute.cs",
@@ -503,7 +547,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 26,
               "Title": "KhuyenMaiController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\KhuyenMaiController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\KhuyenMaiController.cs",
@@ -515,7 +559,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 25,
               "Title": "LoaisController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\LoaisController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LoaisController.cs",
@@ -527,7 +571,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "MyData.dbml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\MyData.dbml",
               "RelativeDocumentMoniker": "Models\\MyData.dbml",
@@ -539,7 +583,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "TonKhoViewModel.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Model\\TonKhoViewModel.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Model\\TonKhoViewModel.cs",
@@ -551,7 +595,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "TopKhachHangDetail.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Model\\TopKhachHangDetail.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Model\\TopKhachHangDetail.cs",
@@ -563,7 +607,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 27,
               "Title": "BackupController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\BackupController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BackupController.cs",
@@ -575,7 +619,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "TopSanPhamDetail.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Model\\TopSanPhamDetail.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Model\\TopSanPhamDetail.cs",
@@ -587,7 +631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "AccountSettingsController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\AccountSettingsController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AccountSettingsController.cs",
@@ -599,7 +643,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "TopKhachHangViewModel.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Model\\TopKhachHangViewModel.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Model\\TopKhachHangViewModel.cs",
@@ -611,7 +655,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "AdminAreaRegistration.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\AdminAreaRegistration.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\AdminAreaRegistration.cs",
@@ -623,7 +667,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "TopSanPhamViewModel.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Model\\TopSanPhamViewModel.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Model\\TopSanPhamViewModel.cs",
@@ -635,7 +679,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 37,
               "Title": "SanPhamsController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Controllers\\SanPhamsController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\SanPhamsController.cs",
@@ -647,7 +691,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 36,
               "Title": "VaiTroTuyChinh.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Security\\VaiTroTuyChinh.cs",
               "RelativeDocumentMoniker": "Security\\VaiTroTuyChinh.cs",
@@ -659,7 +703,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 38,
               "Title": "BundleConfig.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\BundleConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\BundleConfig.cs",
@@ -671,7 +715,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 39,
               "Title": "GioHangController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
               "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
@@ -679,12 +723,11 @@
               "RelativeToolTip": "Controllers\\GioHangController.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-26T02:58:59.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T02:58:59.569Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 42,
               "Title": "ErrorController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\ErrorController.cs",
               "RelativeDocumentMoniker": "Controllers\\ErrorController.cs",
@@ -696,7 +739,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 40,
               "Title": "GioHangController.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Controllers\\GioHangController.cs",
               "RelativeDocumentMoniker": "Controllers\\GioHangController.cs",
@@ -704,12 +747,11 @@
               "RelativeToolTip": "Controllers\\GioHangController.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAAAwCUAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T09:43:12.034Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T09:43:12.034Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 45,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\Detail.cshtml",
               "RelativeDocumentMoniker": "Views\\NhaCungCap\\Detail.cshtml",
@@ -721,7 +763,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 44,
               "Title": "GioHang.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\GioHang.cs",
               "RelativeDocumentMoniker": "Models\\GioHang.cs",
@@ -733,7 +775,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 43,
               "Title": "HomeModel.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Models\\HomeModel.cs",
               "RelativeDocumentMoniker": "Models\\HomeModel.cs",
@@ -745,7 +787,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 41,
               "Title": "Detail.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\SanPham\\Detail.cshtml",
               "RelativeDocumentMoniker": "Views\\SanPham\\Detail.cshtml",
@@ -757,7 +799,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 46,
               "Title": "ListNhaCungCap.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\NhaCungCap\\ListNhaCungCap.cshtml",
               "RelativeDocumentMoniker": "Views\\NhaCungCap\\ListNhaCungCap.cshtml",
@@ -769,7 +811,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 47,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Web.config",
               "RelativeDocumentMoniker": "Views\\Web.config",
@@ -781,7 +823,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 48,
               "Title": "AssemblyInfo.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Properties\\AssemblyInfo.cs",
               "RelativeDocumentMoniker": "Properties\\AssemblyInfo.cs",
@@ -793,7 +835,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 50,
               "Title": "SanPhamLoai.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\SanPhamLoai.cshtml",
               "RelativeDocumentMoniker": "Views\\Loai\\SanPhamLoai.cshtml",
@@ -805,7 +847,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 49,
               "Title": "ListLoai.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Views\\Loai\\ListLoai.cshtml",
               "RelativeDocumentMoniker": "Views\\Loai\\ListLoai.cshtml",
@@ -817,7 +859,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 51,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
@@ -829,7 +871,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 53,
               "Title": "FilterConfig.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\App_Start\\FilterConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\FilterConfig.cs",
@@ -841,7 +883,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 54,
               "Title": "Global.asax.cs",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Global.asax.cs",
               "RelativeDocumentMoniker": "Global.asax.cs",
@@ -853,7 +895,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 55,
               "Title": "packages.config",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\packages.config",
               "RelativeDocumentMoniker": "packages.config",
@@ -865,7 +907,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 52,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
@@ -878,7 +920,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 56,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\clean\\WebThoiTrang\\WebThoiTrang\\Areas\\Admin\\Views\\Backup\\Index.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Backup\\Index.cshtml",

@@ -51,11 +51,11 @@
         transition: all 0.3s ease;
     }
 
-    .form-control:focus {
-        border-color: #333;
-        box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
-        outline: none;
-    }
+        .form-control:focus {
+            border-color: #333;
+            box-shadow: 0 0 0 2px rgba(0,0,0,0.1);
+            outline: none;
+        }
 
     .text-danger {
         color: #dc3545;
@@ -77,9 +77,9 @@
         transition: background-color 0.3s ease;
     }
 
-    .login-button:hover {
-        background-color: #000;
-    }
+        .login-button:hover {
+            background-color: #000;
+        }
 
     .register-link {
         text-align: center;
@@ -88,16 +88,16 @@
         color: #666;
     }
 
-    .register-link a {
-        color: #333;
-        text-decoration: none;
-        font-weight: 500;
-        margin-left: 5px;
-    }
+        .register-link a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 5px;
+        }
 
-    .register-link a:hover {
-        text-decoration: underline;
-    }
+            .register-link a:hover {
+                text-decoration: underline;
+            }
 
     .input-group {
         position: relative;
@@ -193,3 +193,8 @@
         }
     }
 </script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME"
+              chat-title="test"
+              agent-id="0ac23d79-7469-47df-8256-9b30c17cabae"
+              language-code="en"></df-messenger>

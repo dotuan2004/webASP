@@ -44,15 +44,15 @@
         align-items: center;
     }
 
-    .category-link:after {
-        content: '+';
-        font-size: 16px;
-    }
+        .category-link:after {
+            content: '+';
+            font-size: 16px;
+        }
 
-    .category-link:hover {
-        text-decoration: none;
-        color: #000;
-    }
+        .category-link:hover {
+            text-decoration: none;
+            color: #000;
+        }
 
     .promo-banner {
         width: 100%;
@@ -80,12 +80,12 @@
         height: 100%; /* Đảm bảo slide cũng cao 1422px */
     }
 
-    .slide img {
-        width: 100%;
-        height: 100%; /* Đảm bảo ảnh lấp đầy slide */
-        object-fit: fill; /* Đảm bảo ảnh không bị méo */
-        display: block;
-    }
+        .slide img {
+            width: 100%;
+            height: 100%; /* Đảm bảo ảnh lấp đầy slide */
+            object-fit: fill; /* Đảm bảo ảnh không bị méo */
+            display: block;
+        }
 
     /* Navigation Buttons */
     .slider-button {
@@ -101,9 +101,9 @@
         transition: background 0.3s;
     }
 
-    .slider-button:hover {
-        background: rgba(0, 0, 0, 0.8);
-    }
+        .slider-button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
 
     .prev {
         left: 20px;
@@ -132,9 +132,9 @@
         transition: background 0.3s;
     }
 
-    .dot.active {
-        background: white;
-    }
+        .dot.active {
+            background: white;
+        }
 
     .block-header {
         font-weight: 400;
@@ -155,11 +155,11 @@
         font-weight: 500;
     }
 
-    .product-title span {
-        color: #666;
-        font-size: 16px;
-        margin-left: 10px;
-    }
+        .product-title span {
+            color: #666;
+            font-size: 16px;
+            margin-left: 10px;
+        }
 
     .product-grid {
         display: grid;
@@ -172,10 +172,10 @@
         position: relative;
     }
 
-    .product-item:hover {
-        transform: translateY(-5px); /* Di chuyển sản phẩm lên trên một chút */
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Thêm bóng đổ */
-    }
+        .product-item:hover {
+            transform: translateY(-5px); /* Di chuyển sản phẩm lên trên một chút */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* Thêm bóng đổ */
+        }
 
     .product-image {
         position: relative;
@@ -183,15 +183,15 @@
         overflow: hidden; /* Ẩn phần ảnh bị tràn */
     }
 
-    .product-image img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.3s ease; /* Hiệu ứng zoom ảnh */
-    }
+        .product-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease; /* Hiệu ứng zoom ảnh */
+        }
 
     .product-item:hover .product-image img {
         transform: scale(1.05); /* Zoom ảnh lên 105% */
@@ -223,19 +223,19 @@
         box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .wishlist-btn:hover {
-        transform: scale(1.1);
-        background: white;
-    }
+        .wishlist-btn:hover {
+            transform: scale(1.1);
+            background: white;
+        }
 
-    .wishlist-btn i {
-        font-size: 18px;
-        color: #666;
-    }
+        .wishlist-btn i {
+            font-size: 18px;
+            color: #666;
+        }
 
-    .wishlist-btn.active i {
-        color: #ff4d4d;
-    }
+        .wishlist-btn.active i {
+            color: #ff4d4d;
+        }
 
     .product-info {
         padding: 15px;
@@ -259,7 +259,7 @@
 
     /* Đậm màu text khi hover */
     .product-item:hover .product-name {
-        color: #000; 
+        color: #000;
         font-weight: bold;
     }
 
@@ -281,10 +281,10 @@
         display: block;
     }
 
-    .product-link:hover {
-        text-decoration: none;
-        color: inherit;
-    }
+        .product-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
 
     /* Sort Sản phẩm */
     .sort-dropdown {
@@ -302,9 +302,9 @@
         font-size: 14px;
     }
 
-    .sort-btn i {
-        font-size: 12px;
-    }
+        .sort-btn i {
+            font-size: 12px;
+        }
 
     .sort-menu {
         position: absolute;
@@ -318,9 +318,9 @@
         z-index: 100;
     }
 
-    .sort-menu.show {
-        display: block;
-    }
+        .sort-menu.show {
+            display: block;
+        }
 
     .sort-item {
         display: block;
@@ -330,9 +330,9 @@
         font-size: 14px;
     }
 
-    .sort-item:hover {
-        background-color: #f5f5f5;
-    }
+        .sort-item:hover {
+            background-color: #f5f5f5;
+        }
 </style>
 
 <script type="text/javascript">
@@ -552,3 +552,8 @@
         </div>
     </div>
 </div>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger intent="WELCOME"
+              chat-title="test"
+              agent-id="0ac23d79-7469-47df-8256-9b30c17cabae"
+              language-code="en"></df-messenger>
