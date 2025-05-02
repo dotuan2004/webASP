@@ -552,9 +552,11 @@
     <Content Include="Views\NguoiDung\LichSuDonHang.cshtml" />
     <Content Include="Views\NguoiDung\_ChiTietDonHang.cshtml" />
     <Content Include="Views\SanPham\YeuThich.cshtml" />
+    <Content Include="Views\NguoiDung\VerifyOTP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\verify\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

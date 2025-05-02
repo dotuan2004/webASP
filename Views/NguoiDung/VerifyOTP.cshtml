@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Xác Nhận OTP";
+    var username = ViewBag.Username as string;
+}
+
+<h2>Xác Nhận OTP</h2>
+
+<form method="post" action="@Url.Action("VerifyOTP", "NguoiDung")">
+    <div>
+        <label for="otpInput">Mã OTP:</label>
+        <input type="text" name="otpInput" id="otpInput" required />
+    </div>
+
+    <button type="submit">Xác nhận</button>
+</form>
+
+@if (TempData["Error"] != null)
+{
+    <div style="color:red">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div style="color:green">@TempData["Success"]</div>
+}

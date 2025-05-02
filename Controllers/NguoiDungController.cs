@@ -2,12 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Web.Services.Description;
-using System.Windows;
 
 namespace LTW.Controllers
 {
@@ -37,77 +36,175 @@ namespace LTW.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Dangky(FormCollection collection, KhachHang kh)
+        public ActionResult DangKy(FormCollection collection)
         {
-            var TenKhachHang = collection["TenKhachHang"];
-            var UserName = collection["UserName"];
-            var Password = collection["Password"];
-            var MatKhauXacNhan = collection["MatKhauXacNhan"];
-            var Email = collection["Email"];
-            var DiaChi = collection["DiaChi"];
-            var SDT = collection["SDT"];
-            var RoleID = Convert.ToInt32(collection["RoleID"]);
-            var check = data.KhachHangs.Where(n => n.UserName == UserName).Count();
+            string tenKH = collection["TenKhachHang"];
+            string username = collection["UserName"];
+            string password = collection["Password"];
+            string confirmPassword = collection["MatKhauXacNhan"];
+            string email = collection["Email"];
+            string diaChi = collection["DiaChi"];
+            string sdt = collection["SDT"];
 
-
-
-
-            if (check > 0)
+            if (data.KhachHangs.Any(kh => kh.UserName == username))
             {
-                TempData["Error"] = "Ten dang nhap da ton tai!";
-                return this.DangKy();
+                TempData["Error"] = "Tên đăng nhập đã tồn tại!";
+                return View();
             }
 
-            else if (String.IsNullOrEmpty(MatKhauXacNhan))
+            if (password != confirmPassword)
             {
-                TempData["NhapMKXN"] = "Phải nhập mật khẩu xác nhận!";
+                TempData["Error"] = "Mật khẩu không khớp!";
+                return View();
             }
 
-            else if (ValidateEmail(Email) == false)
+            if (!ValidateEmail(email))
             {
-                TempData["Error"] = "Email khong hop le";
-                return this.DangKy();
-
+                TempData["Error"] = "Email không hợp lệ!";
+                return View();
             }
 
-
-            else if (ValidateVNPhoneNumber (SDT) == false)
+            // Lưu dữ liệu tạm vào Session để chờ OTP xác thực
+            var khachHang = new KhachHang
             {
-                TempData["Error"] = "So dien thoai ko hop le!";
-                return this.DangKy();
-            }
-                       
-            else
+                UserName = username,
+                Password = password,
+                TenKhachHang = tenKH,
+                Email = email,
+                DiaChi = diaChi,
+                SDT = sdt,
+                RoleID = 2
+            };
+            Session["KH_" + username] = khachHang;
+
+            // Tạo OTP & lưu Session
+            string otp = GenerateOTP();
+            Session["OTP_" + username] = otp;
+
+            // Gửi OTP qua email
+            SendOTPEmail(email, tenKH, otp);
+
+            TempData["Username"] = username;  // Truyền qua form OTP
+            return RedirectToAction("VerifyOTP");
+        }
+
+        public ActionResult VerifyOTP()
+        {
+            // Dùng TempData để giữ username giữa các request
+            string username = TempData["Username"] as string;
+
+            if (string.IsNullOrEmpty(username) || Session["OTP_" + username] == null)
             {
-                if (!Password.Equals(MatKhauXacNhan))
-                {
-                    TempData["MatKhauGiongNhau"] = "Mật khẩu và mật khẩu xác nhận phải giống nhau";
-                }
-                else
-                {
-
-                    kh.UserName = UserName;
-                    
-                    kh.Password = Password;
-                    kh.TenKhachHang = TenKhachHang;
-                    kh.Email = Email;
-                    kh.DiaChi = DiaChi;
-                    kh.SDT = SDT;
-                    //kh.RoleID = RoleID;
-                    kh.RoleID = 2;
-
-
-                    data.KhachHangs.InsertOnSubmit(kh);
-                    data.SubmitChanges();
-
-                    return RedirectToAction("DangNhap");
-                }
-
-                
-                
-
+                TempData["Error"] = "OTP đã hết hạn hoặc không hợp lệ!";
+                return RedirectToAction("DangKy");
             }
-            return this.DangKy();
+
+            // Lưu lại TempData để dùng cho POST (vì TempData chỉ tồn tại 1 lần)
+            TempData.Keep("Username");
+            ViewBag.Username = username;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult VerifyOTP(string otpInput)
+        {
+            string username = TempData["Username"] as string;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                TempData["Error"] = "Lỗi xác thực. Vui lòng đăng ký lại!";
+                return RedirectToAction("DangKy");
+            }
+
+            string sessionOtp = Session["OTP_" + username] as string;
+            var khachHang = Session["KH_" + username] as KhachHang;
+
+            if (sessionOtp == null || khachHang == null)
+            {
+                TempData["Error"] = "OTP đã hết hạn hoặc không hợp lệ!";
+                return RedirectToAction("DangKy");
+            }
+
+            if (sessionOtp == otpInput)
+            {
+                data.KhachHangs.InsertOnSubmit(khachHang);
+                data.SubmitChanges();
+
+                SendConfirmationEmail(khachHang.Email, khachHang.TenKhachHang);
+
+                // Xóa Session sau khi dùng
+                Session.Remove("OTP_" + username);
+                Session.Remove("KH_" + username);
+
+                TempData["Success"] = "Xác thực thành công! Bạn có thể đăng nhập.";
+                return RedirectToAction("DangNhap");
+            }
+
+            TempData["Error"] = "OTP không chính xác!";
+            TempData["Username"] = username;
+            return RedirectToAction("VerifyOTP");
+        }
+
+
+        public void SendConfirmationEmail(string toEmail, string userName)
+        {
+            var fromEmail = "dodinhtuanyb2k4@gmail.com";
+            var password = "fvocofqpeseipsia";
+            var smtpHost = "smtp.gmail.com";
+            var smtpPort = 587;
+            var enableSsl = true;
+
+            var fromAddress = new MailAddress(fromEmail, "Cửa hàng LTW");
+            var toAddress = new MailAddress(toEmail);
+
+            string subject = "Đăng ký thành công";
+            string body = $"Chào {userName},\n\nBạn đã đăng ký tài khoản thành công tại website của chúng tôi.\n\nTrân trọng!";
+
+            var smtp = new SmtpClient
+            {
+                Host = smtpHost,
+                Port = smtpPort,
+                EnableSsl = enableSsl,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail, password)
+            };
+
+            using (var message = new MailMessage(fromAddress, toAddress)
+            {
+                Subject = subject,
+                Body = body
+            })
+            {
+                smtp.Send(message);
+            }
+        }
+        public string GenerateOTP()
+        {
+            Random rand = new Random();
+            return rand.Next(100000, 999999).ToString(); // 6 số
+        }
+
+        public void SendOTPEmail(string toEmail, string name, string otp)
+        {
+            var fromEmail = "dodinhtuanyb2k4@gmail.com";
+            var password = "fvocofqpeseipsia";
+
+            var smtp = new SmtpClient("smtp.gmail.com", 587)
+            {
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(fromEmail, password)
+            };
+
+            var message = new MailMessage(fromEmail, toEmail)
+            {
+                Subject = "Xác thực OTP - Đăng ký",
+                Body = $"Chào {name},\n\nMã OTP của bạn là: {otp}\nVui lòng nhập OTP để hoàn tất đăng ký.\n\nTrân trọng!"
+            };
+
+            smtp.Send(message);
         }
 
         [HttpGet]
